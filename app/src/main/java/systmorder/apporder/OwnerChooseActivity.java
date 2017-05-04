@@ -11,7 +11,7 @@ import android.widget.Button;
 
 public class OwnerChooseActivity extends AppCompatActivity {
 
-    Button btnOwnerGoToOwner, btnOwnerGoToStaff, btnOwnerGoToCust;
+    private Button btnOwnerGoToOwner, btnOwnerGoToStaff, btnOwnerGoToCust;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
