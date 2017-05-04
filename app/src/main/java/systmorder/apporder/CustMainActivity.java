@@ -12,12 +12,12 @@ import com.roughike.bottombar.OnMenuTabClickListener;
  * Created by mansoull on 4/5/2017.
  */
 
-public class StaffMainActivity extends AppCompatActivity implements OnMenuTabClickListener {
+public class CustMainActivity extends AppCompatActivity implements OnMenuTabClickListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.staff_activity_main);
+        setContentView(R.layout.cust_activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
