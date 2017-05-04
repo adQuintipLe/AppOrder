@@ -11,32 +11,32 @@ import android.widget.Button;
 
 public class OwnerChooseActivity extends AppCompatActivity {
 
-    Button btnGoToOwner, btnGoToStaff, btnGoToCust;
+    Button btnOwnerGoToOwner, btnOwnerGoToStaff, btnOwnerGoToCust;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.owner_activity_choosing);
 
-        btnGoToOwner = (Button) findViewById(R.id.btnGoToOwner);
-        btnGoToStaff = (Button) findViewById(R.id.btnGoToStaff);
-        btnGoToCust = (Button) findViewById(R.id.btnGoToCust);
+        btnOwnerGoToOwner = (Button) findViewById(R.id.btnOwnerGoToOwner);
+        btnOwnerGoToStaff = (Button) findViewById(R.id.btnOwnerGoToStaff);
+        btnOwnerGoToCust = (Button) findViewById(R.id.btnOwnerGoToCust);
 
-        btnGoToOwner.setOnClickListener(new View.OnClickListener() {
+        btnOwnerGoToOwner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(OwnerChooseActivity.this, OwnerMainActivity.class));
             }
         });
 
-        btnGoToStaff.setOnClickListener(new View.OnClickListener() {
+        btnOwnerGoToStaff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
 
-        btnGoToCust.setOnClickListener(new View.OnClickListener() {
+        btnOwnerGoToCust.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

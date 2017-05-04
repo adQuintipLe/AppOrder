@@ -13,19 +13,19 @@
         <!--android:layout_toEndOf="@+id/textView" />-->
 
     <Button
-        android:id="@+id/btnGoToOwner"
+        android:id="@+id/btnOwnerGoToOwner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Owner"/>
 
     <Button
-        android:id="@+id/btnGoToStaff"
+        android:id="@+id/btnOwnerGoToStaff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Staff"/>
 
     <Button
-        android:id="@+id/btnGoToCust"
+        android:id="@+id/btnOwnerGoToCust"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Customer"/>
