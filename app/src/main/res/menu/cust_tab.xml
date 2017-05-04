@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/btmBarDashboard"
+        android:id="@+id/btmBarHome"
         android:icon="@drawable/ic_action_home"
-        android:title="Dashboard" />
+        android:title="Home" />
 
     <item
-        android:id="@+id/btmBarDetails"
+        android:id="@+id/btmBarOrderHistory"
         android:icon="@drawable/ic_action_history"
-        android:title="Details" />
+        android:title="Order History" />
 
     <item
         android:id="@+id/btmBarSetting"
