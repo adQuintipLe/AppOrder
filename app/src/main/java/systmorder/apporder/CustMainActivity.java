@@ -9,9 +9,6 @@ import android.support.v7.widget.Toolbar;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
-/**
- * Created by mansoull on 4/5/2017.
- */
 
 public class CustMainActivity extends AppCompatActivity implements OnMenuTabClickListener {
 
@@ -24,6 +21,9 @@ public class CustMainActivity extends AppCompatActivity implements OnMenuTabClic
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        CustbtmBar = BottomBar.attach(this, savedInstanceState);
+        CustbtmBar.setItemsFromMenu(R.menu.cust_tab, this);
     }
 
     @Override
