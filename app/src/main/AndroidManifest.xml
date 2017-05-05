@@ -22,10 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AllRegisterActivity"></activity>
         <activity android:name=".AdminMainActivity"></activity>
         <activity android:name=".OwnerChooseActivity"></activity>
         <activity android:name=".OwnerMainActivity"></activity>
-        <activity android:name=".AllRegisterActivity"></activity>
+        <activity android:name=".StaffChooseActivity"></activity>
+        <activity android:name=".StaffMainActivity"></activity>
+        <activity android:name=".CustMainActivity"></activity>
+
         <!--<activity android:name=".AdminTest">-->
 
         <!--</activity>-->

@@ -35,7 +35,7 @@ public class AllLoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AllLoginActivity.this, OwnerChooseActivity.class));
+                startActivity(new Intent(AllLoginActivity.this, CustMainActivity.class));
             }
         });
         btnReg.setOnClickListener(new View.OnClickListener() {

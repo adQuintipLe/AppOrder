@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
 /**
@@ -13,6 +14,8 @@ import com.roughike.bottombar.OnMenuTabClickListener;
  */
 
 public class CustMainActivity extends AppCompatActivity implements OnMenuTabClickListener {
+
+    private BottomBar CustbtmBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
