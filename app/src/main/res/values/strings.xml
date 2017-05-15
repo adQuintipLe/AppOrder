@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AppOrder</string>
+    <string name="cancel" />
+    <string name="signin" />
 </resources>
