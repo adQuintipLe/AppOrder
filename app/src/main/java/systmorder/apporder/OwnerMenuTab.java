@@ -1,6 +1,7 @@
 package systmorder.apporder;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,13 +80,24 @@ public class OwnerMenuTab extends Fragment {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id  ) {
                                     String srt = userInput.getText().toString();
-                                    Button myView = new Button(getActivity());
-                                     myView.setText(userInput.getText());
 
                                     LinearLayout ll = (LinearLayout) getView().findViewById(R.id.llayout);
-                                    ActionBar.LayoutParams lp = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
-                                    ll.addView(myView, lp);
 
+                                    Button[] btn = new Button[1];
+
+                                    for (int i = 0; i < 1; i++){
+                                        btn[i] = new Button(getActivity());
+                                        btn[i].setId(i+1);
+                                        btn[i].setText(userInput.getText());
+                                        ll.addView(btn[i]);
+                                        btn[i].setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                                public void onClick(View view) {
+                                                startActivity(new Intent(getActivity(), AllRegisterActivity.class));
+                                                }
+                                        });
+
+                                    }
                                     Toast.makeText(getActivity(),srt, Toast.LENGTH_LONG).show();
                                 }
                             })
