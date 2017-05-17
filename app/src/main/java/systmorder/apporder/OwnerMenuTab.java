@@ -64,7 +64,6 @@ public class OwnerMenuTab extends Fragment {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                     getActivity());
 
-            // set prompts.xml to alertdialog builder
             alertDialogBuilder.setView(promptsView);
 
             final EditText userInput = (EditText) promptsView
