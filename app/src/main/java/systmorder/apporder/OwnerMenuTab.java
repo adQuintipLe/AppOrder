@@ -21,9 +21,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/**
- * Created by mansoull on 15/5/2017.
- */
 
 public class OwnerMenuTab extends Fragment {
 
