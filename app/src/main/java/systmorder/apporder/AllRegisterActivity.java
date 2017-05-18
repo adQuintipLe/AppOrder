@@ -32,6 +32,8 @@ public class AllRegisterActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private ProgressDialog progressDialog;
 
+    public static String strUserId = "";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +51,6 @@ public class AllRegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                progressDialog.setMessage("Storing Data...");
-//                progressDialog.show();
 
                 final String strUserEmail = edtEmailReg.getText().toString().trim();
                 final String strUserPass = edtPsswrdReg.getText().toString().trim();
@@ -91,28 +91,39 @@ public class AllRegisterActivity extends AppCompatActivity {
                     Toast.makeText(AllRegisterActivity.this, "Please enter your name", Toast.LENGTH_SHORT).show();
                     return;
 
+                } if (strUserPass.length() < 6){
+
+                    Toast.makeText(AllRegisterActivity.this, "Password too short, enter minimum 6 characters", Toast.LENGTH_SHORT).show();
+                    return;
+
                 }
+
+                strUserId = firebaseAuth.getCurrentUser().getUid();
 
                 firebaseAuth.createUserWithEmailAndPassword(strUserEmail, strUserPass).addOnCompleteListener(AllRegisterActivity.this,
                         new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        Toast.makeText(AllRegisterActivity.this, "Completed" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AllRegisterActivity.this, "Register Success", Toast.LENGTH_SHORT).show();
 
                         if (!task.isSuccessful()){
 
-//                            progressDialog.dismiss();
                             Toast.makeText(AllRegisterActivity.this, "Register failed" + task.getException(), Toast.LENGTH_SHORT).show();
 
                         } else {
 
-                            startActivity(new Intent(AllRegisterActivity.this, AllLoginActivity.class));
-                            finish();
+                            strUserId = firebaseAuth.getCurrentUser().getUid();
                             HashMap<String, String> dataMap = new HashMap<String, String>();
                             dataMap.put("userEmail", strUserEmail);
                             dataMap.put("userPass", strUserPass);
                             dataMap.put("userName", strUserName);
+
+                            startActivity(new Intent(AllRegisterActivity.this, AllLoginActivity.class));
+                            finish();
+
+                            databaseReference.child(strUserId).setValue(dataMap);
+
                         }
                     }
                 });
