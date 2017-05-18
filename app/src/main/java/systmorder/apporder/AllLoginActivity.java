@@ -49,7 +49,12 @@ public class AllLoginActivity extends AppCompatActivity {
                 final String strUserEmail = edtEmail.getText().toString();
                 final String strUserPass = edtPsswrd.getText().toString();
 
-                if (TextUtils.isEmpty(strUserEmail)){
+                if (TextUtils.isEmpty(strUserEmail) && TextUtils.isEmpty(strUserPass)){
+
+                    Toast.makeText(AllLoginActivity.this, "Both fields are empty", Toast.LENGTH_SHORT).show();
+                    return;
+
+                } else if (TextUtils.isEmpty(strUserEmail)){
 
                     Toast.makeText(AllLoginActivity.this, "please enter your email address", Toast.LENGTH_SHORT).show();
                     return;
