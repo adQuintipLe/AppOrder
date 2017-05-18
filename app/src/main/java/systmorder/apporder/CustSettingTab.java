@@ -13,16 +13,19 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * Created by mansoull on 18/5/2017.
+ */
 
-public class OwnerSettingTab extends Fragment {
+public class CustSettingTab extends Fragment {
 
-    private Button btnOwnerLogOut;
+    private Button btnCustLogOut;
     private FirebaseAuth firebaseAuth;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.owner_fragment_setting_tab,container,false);
+        View view = inflater.inflate(R.layout.cust_fragment_setting_tab,container,false);
         return view;
     }
 
@@ -35,17 +38,16 @@ public class OwnerSettingTab extends Fragment {
         mbar.setTitle("Setting");
 
         firebaseAuth = FirebaseAuth.getInstance();
-        btnOwnerLogOut = (Button) v.findViewById(R.id.btnOwnerLogOut);
+        btnCustLogOut = (Button) v.findViewById(R.id.btnCustLogOut);
 
-        btnOwnerLogOut.setOnClickListener(new View.OnClickListener() {
+        btnCustLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (view == btnOwnerLogOut){
 
+                if (view == btnCustLogOut){
                     firebaseAuth.signOut();
                     startActivity(new Intent(getActivity(), AllLoginActivity.class));
                     getActivity().finish();
-
                 }
             }
         });

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -97,6 +98,27 @@ public class CustMainActivity extends AppCompatActivity implements OnMenuTabClic
 
     @Override
     public void onMenuTabSelected(@IdRes int menuItemId) {
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        if(menuItemId == R.id.btmBarHomeCust){
+
+            CustHomeTab fragCustHomeTab = new CustHomeTab();
+            transaction.replace(R.id.cust_activity_main, fragCustHomeTab);
+            transaction.commit();
+
+        } else if (menuItemId == R.id.btmBarOrderHistoryCust){
+
+            CustOrderHistoryTab fragCustOrderHistoryTab = new CustOrderHistoryTab();
+            transaction.replace(R.id.cust_activity_main, fragCustOrderHistoryTab);
+            transaction.commit();
+
+        } else if (menuItemId == R.id.btmBarSettingCust){
+
+            CustSettingTab fragCustSettingTab = new CustSettingTab();
+            transaction.replace(R.id.cust_activity_main, fragCustSettingTab);
+            transaction.commit();
+        }
 
     }
 
