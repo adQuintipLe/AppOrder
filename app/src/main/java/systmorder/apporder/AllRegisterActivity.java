@@ -19,6 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 
 
@@ -45,10 +47,10 @@ public class AllRegisterActivity extends AppCompatActivity {
 
         btnLoginReg.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
 
-                progressDialog.setMessage("Storing Data...");
-                progressDialog.show();
+//                progressDialog.setMessage("Storing Data...");
+//                progressDialog.show();
 
                 final String strUserEmail = edtEmailReg.getText().toString().trim();
                 final String strUserPass = edtPsswrdReg.getText().toString().trim();
@@ -57,6 +59,18 @@ public class AllRegisterActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(strUserEmail) && TextUtils.isEmpty(strUserPass) && TextUtils.isEmpty(strUserName)){
 
                     Toast.makeText(getApplicationContext(), "Please fill all the empty", Toast.LENGTH_SHORT).show();
+
+                } else if (TextUtils.isEmpty(strUserEmail) && TextUtils.isEmpty(strUserPass)){
+
+                    Toast.makeText(getApplicationContext(), "Please enter your email and password", Toast.LENGTH_SHORT).show();
+
+                } else if (TextUtils.isEmpty(strUserEmail) && TextUtils.isEmpty(strUserName)){
+
+                    Toast.makeText(getApplicationContext(), "Please enter your email and name", Toast.LENGTH_SHORT).show();
+
+                } else if (TextUtils.isEmpty(strUserPass) && TextUtils.isEmpty(strUserName)){
+
+                    Toast.makeText(getApplicationContext(), "Please enter your password and name", Toast.LENGTH_SHORT).show();
 
                 } else if (TextUtils.isEmpty(strUserEmail)){
 
@@ -75,25 +89,25 @@ public class AllRegisterActivity extends AppCompatActivity {
 
                 }
 
-                firebaseAuth.createUserWithEmailAndPassword(strUserEmail, strUserPass).addOnCompleteListener(AllRegisterActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()){
-
-                            progressDialog.dismiss();
-                            Toast.makeText(AllRegisterActivity.this, "Register failed" + task.getException(), Toast.LENGTH_SHORT).show();
-
-                        } else {
-
-                            startActivity(new Intent(AllRegisterActivity.this, AllLoginActivity.class));
-                            finish();
-//                            HashMap<String, String> dataMap = new HashMap<String, String>();
-//                            dataMap.put("userEmail", strUserEmail);
-//                            dataMap.put("userPass", strUserPass);
-//                            dataMap.put("userName", strUserName);
-                        }
-                    }
-                });
+//                firebaseAuth.createUserWithEmailAndPassword(strUserEmail, strUserPass).addOnCompleteListener(AllRegisterActivity.this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (!task.isSuccessful()){
+//
+//                            progressDialog.dismiss();
+//                            Toast.makeText(AllRegisterActivity.this, "Register failed" + task.getException(), Toast.LENGTH_SHORT).show();
+//
+//                        } else {
+//
+//                            startActivity(new Intent(AllRegisterActivity.this, AllLoginActivity.class));
+//                            finish();
+////                            HashMap<String, String> dataMap = new HashMap<String, String>();
+////                            dataMap.put("userEmail", strUserEmail);
+////                            dataMap.put("userPass", strUserPass);
+////                            dataMap.put("userName", strUserName);
+//                        }
+//                    }
+//                });
             }
         });
     }
