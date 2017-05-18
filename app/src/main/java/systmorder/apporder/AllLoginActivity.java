@@ -78,7 +78,7 @@ public class AllLoginActivity extends AppCompatActivity {
                                     }
                                 } else {
 
-                                    Intent intent = new Intent(AllLoginActivity.this, CustMainActivity.class);
+                                    Intent intent = new Intent(AllLoginActivity.this, OwnerChooseActivity.class);
                                     startActivity(intent);
                                     finish();
 
