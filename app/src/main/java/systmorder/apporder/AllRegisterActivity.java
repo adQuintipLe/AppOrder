@@ -58,56 +58,64 @@ public class AllRegisterActivity extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(strUserEmail) && TextUtils.isEmpty(strUserPass) && TextUtils.isEmpty(strUserName)){
 
-                    Toast.makeText(getApplicationContext(), "Please fill all the empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AllRegisterActivity.this, "Please fill all the empty", Toast.LENGTH_SHORT).show();
+                    return;
 
                 } else if (TextUtils.isEmpty(strUserEmail) && TextUtils.isEmpty(strUserPass)){
 
-                    Toast.makeText(getApplicationContext(), "Please enter your email and password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AllRegisterActivity.this, "Please enter your email and password", Toast.LENGTH_SHORT).show();
+                    return;
 
                 } else if (TextUtils.isEmpty(strUserEmail) && TextUtils.isEmpty(strUserName)){
 
-                    Toast.makeText(getApplicationContext(), "Please enter your email and name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AllRegisterActivity.this, "Please enter your email and name", Toast.LENGTH_SHORT).show();
+                    return;
 
                 } else if (TextUtils.isEmpty(strUserPass) && TextUtils.isEmpty(strUserName)){
 
-                    Toast.makeText(getApplicationContext(), "Please enter your password and name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AllRegisterActivity.this, "Please enter your password and name", Toast.LENGTH_SHORT).show();
+                    return;
 
                 } else if (TextUtils.isEmpty(strUserEmail)){
 
-                    Toast.makeText(getApplicationContext(), "Please enter your email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AllRegisterActivity.this, "Please enter your email", Toast.LENGTH_SHORT).show();
                     return;
 
                 } else if (TextUtils.isEmpty(strUserPass)){
 
-                    Toast.makeText(getApplicationContext(), "Please enter your password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AllRegisterActivity.this, "Please enter your password", Toast.LENGTH_SHORT).show();
                     return;
 
                 } else if (TextUtils.isEmpty(strUserName)){
 
-                    Toast.makeText(getApplicationContext(), "Please enter your name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AllRegisterActivity.this, "Please enter your name", Toast.LENGTH_SHORT).show();
                     return;
 
                 }
 
-//                firebaseAuth.createUserWithEmailAndPassword(strUserEmail, strUserPass).addOnCompleteListener(AllRegisterActivity.this, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (!task.isSuccessful()){
-//
+                firebaseAuth.createUserWithEmailAndPassword(strUserEmail, strUserPass).addOnCompleteListener(AllRegisterActivity.this,
+                        new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        Toast.makeText(AllRegisterActivity.this, "Completed" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+
+                        if (!task.isSuccessful()){
+
 //                            progressDialog.dismiss();
-//                            Toast.makeText(AllRegisterActivity.this, "Register failed" + task.getException(), Toast.LENGTH_SHORT).show();
-//
-//                        } else {
-//
-//                            startActivity(new Intent(AllRegisterActivity.this, AllLoginActivity.class));
-//                            finish();
-////                            HashMap<String, String> dataMap = new HashMap<String, String>();
-////                            dataMap.put("userEmail", strUserEmail);
-////                            dataMap.put("userPass", strUserPass);
-////                            dataMap.put("userName", strUserName);
-//                        }
-//                    }
-//                });
+                            Toast.makeText(AllRegisterActivity.this, "Register failed" + task.getException(), Toast.LENGTH_SHORT).show();
+
+                        } else {
+
+                            startActivity(new Intent(AllRegisterActivity.this, AllLoginActivity.class));
+                            finish();
+                            HashMap<String, String> dataMap = new HashMap<String, String>();
+                            dataMap.put("userEmail", strUserEmail);
+                            dataMap.put("userPass", strUserPass);
+                            dataMap.put("userName", strUserName);
+                        }
+                    }
+                });
             }
         });
     }
