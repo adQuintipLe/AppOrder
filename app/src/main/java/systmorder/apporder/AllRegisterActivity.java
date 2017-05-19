@@ -98,7 +98,7 @@ public class AllRegisterActivity extends AppCompatActivity {
 
                 }
 
-                strUserId = firebaseAuth.getCurrentUser().getUid();
+//                strUserId = firebaseAuth.getCurrentUser().getUid();
 
                 firebaseAuth.createUserWithEmailAndPassword(strUserEmail, strUserPass).addOnCompleteListener(AllRegisterActivity.this,
                         new OnCompleteListener<AuthResult>() {
