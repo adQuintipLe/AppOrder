@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,6 +31,9 @@ public class AdminUserTabView  extends Fragment {
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
+    private FirebaseUser firebaseUser;
+
+    public static String strGetUserId = "";
 
     @Nullable
     @Override
@@ -45,7 +50,8 @@ public class AdminUserTabView  extends Fragment {
         ActionBar mbar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         mbar.setTitle("User Details");
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+//        firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("tblUser");
 
         txtViewUserEmail = (TextView) v.findViewById(R.id.txtViewUserEmail);
@@ -67,10 +73,11 @@ public class AdminUserTabView  extends Fragment {
 
                 String strUserType = edtViewUserType.getText().toString().trim();
 
-//                databaseReference.child(AllRegisterActivity.strUserId).child("userEmail").setValue(AdminUserTab.strAllEmailList);
-//                databaseReference.child(AllRegisterActivity.strUserId).child("userPass").setValue(AdminUserTab.strAllPassList);
-//                databaseReference.child(AllRegisterActivity.strUserId).child("userName").setValue(AdminUserTab.strAllNameList);
-//                databaseReference.child(AllRegisterActivity.strUserId).child("userType").setValue(strUserType);
+//                strGetUserId = firebaseAuth.getCurrentUser().getUid();
+//                databaseReference.child(AllRegisterActivity.strUserId).child(strGetUserId).child("userEmail").setValue(AdminUserTab.strAllEmailList);
+//                databaseReference.child(AllRegisterActivity.strUserId).child(strGetUserId).child("userPass").setValue(AdminUserTab.strAllPassList);
+//                databaseReference.child(AllRegisterActivity.strUserId).child(strGetUserId).child("userName").setValue(AdminUserTab.strAllNameList);
+                databaseReference.child(AdminUserTab.strUserID).child(firebaseUser.getUid()).child("userType").setValue(strUserType);
 
 //                HashMap<String, String> dataMap = new HashMap<String, String>();
 //                dataMap.put("userEmail", AdminUserTab.strAllEmailList);
@@ -79,6 +86,7 @@ public class AdminUserTabView  extends Fragment {
 //                dataMap.put("userType", strUserType);
 //
 //                databaseReference.child(AllRegisterActivity.strUserId).setValue(dataMap);
+
 
             }
         });

@@ -41,6 +41,9 @@ public class OwnerChooseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                startActivity(new Intent(OwnerChooseActivity.this, CustMainActivity.class));
+                finish();
+
             }
         });
     }

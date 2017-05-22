@@ -116,6 +116,7 @@ public class AllRegisterActivity extends AppCompatActivity {
                             strUserId = firebaseAuth.getCurrentUser().getUid();
                             HashMap<String, String> dataMap = new HashMap<String, String>();
                             dataMap.put("userEmail", strUserEmail);
+                            dataMap.put("userID", strUserId);
                             dataMap.put("userPass", strUserPass);
                             dataMap.put("userName", strUserName);
 

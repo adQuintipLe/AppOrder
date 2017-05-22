@@ -31,6 +31,7 @@ public class AdminUserTab extends Fragment {
     private DatabaseReference databaseReference;
 
     public static String strAllEmailList = "";
+    public static String strUserID = "";
     public static String strAllPassList = "";
     public static String strAllNameList = "";
     public static String strUserTypeList = "";
@@ -50,7 +51,7 @@ public class AdminUserTab extends Fragment {
         ActionBar mbar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         mbar.setTitle("Users");
 
-        firebaseAuth = FirebaseAuth.getInstance();
+//        firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("tblUser");
 
         rvAllUser = (RecyclerView) v.findViewById(R.id.rvAllUser);
