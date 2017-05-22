@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email"/>
+
+    <TextView
+        android:id="@+id/txtViewUserEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="your email"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/txtViewUserPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="your password"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/txtViewUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="your name"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Type"
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:id="@+id/edtViewUserType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/txtViewUserType"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:hint="your type"/>-->
+
+    <Button
+        android:id="@+id/btnsave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

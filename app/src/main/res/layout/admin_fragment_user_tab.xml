@@ -1,56 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/edtEmailRegAdmin"
+    <android.support.v7.widget.RecyclerView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/rvAllUser"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:layout_marginTop="35dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp" />
-
-    <EditText
-        android:id="@+id/edtPsswrdRegAdmin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"/>
-
-    <EditText
-        android:id="@+id/edtNameAdmin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Name"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"/>
-
-    <EditText
-        android:id="@+id/edtUserTypeAdmin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="User Type"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"/>
-
-    <Button
-        android:id="@+id/btnUpdateUserAdmin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:textSize="20sp"
-        android:textColor="#ffffff"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"/>
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
