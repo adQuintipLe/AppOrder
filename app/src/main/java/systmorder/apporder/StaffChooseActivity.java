@@ -1,5 +1,6 @@
 package systmorder.apporder;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +23,8 @@ public class StaffChooseActivity extends AppCompatActivity {
         btnStaffGoToStaff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(StaffChooseActivity.this, StaffMainActivity.class));
+                finish();
             }
         });
 
