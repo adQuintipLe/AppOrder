@@ -31,7 +31,7 @@ public class AdminUserTab extends Fragment {
     private DatabaseReference databaseReference;
 
     public static String strAllEmailList = "";
-    public static String strUserID = "";
+    public static String strUserId = "";
     public static String strAllPassList = "";
     public static String strAllNameList = "";
     public static String strUserTypeList = "";
@@ -81,6 +81,7 @@ public class AdminUserTab extends Fragment {
                     public void onClick(View view) {
 
                         strAllEmailList = model.getUserEmail();
+                        strUserId = model.getUserID();
                         strAllPassList = model.getUserPass();
                         strAllNameList = model.getUserName();
                         strUserTypeList = model.getUserType();

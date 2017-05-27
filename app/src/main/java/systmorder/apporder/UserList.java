@@ -9,6 +9,7 @@ import java.lang.ref.SoftReference;
 public class UserList {
 
     private String userEmail;
+    private String userID;
     private String userPass;
     private String userName;
     private String userType;
@@ -17,9 +18,10 @@ public class UserList {
 
     }
 
-    public UserList (String userEmail, String userPass, String userName, String userType){
+    public UserList (String userEmail,String userID, String userPass, String userName, String userType){
 
         this.userEmail = userEmail;
+        this.userID = userID;
         this.userPass = userPass;
         this.userName = userName;
         this.userType = userType;
@@ -32,6 +34,14 @@ public class UserList {
 
     public void setUserEmail(String userEmail){
         this.userEmail = userEmail;
+    }
+
+    public String getUserID(){
+        return userID;
+    }
+
+    public void setUserID (String userID){
+        this.userID = userID;
     }
 
     public String getUserPass(){

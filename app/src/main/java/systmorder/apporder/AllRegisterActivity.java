@@ -55,6 +55,7 @@ public class AllRegisterActivity extends AppCompatActivity {
                 final String strUserEmail = edtEmailReg.getText().toString().trim();
                 final String strUserPass = edtPsswrdReg.getText().toString().trim();
                 final String strUserName = edtName.getText().toString().trim();
+                final String strUserType = "customer";
 
                 if (TextUtils.isEmpty(strUserEmail) && TextUtils.isEmpty(strUserPass) && TextUtils.isEmpty(strUserName)){
 
@@ -119,11 +120,13 @@ public class AllRegisterActivity extends AppCompatActivity {
                             dataMap.put("userID", strUserId);
                             dataMap.put("userPass", strUserPass);
                             dataMap.put("userName", strUserName);
+                            dataMap.put("userType", strUserType);
 
                             startActivity(new Intent(AllRegisterActivity.this, AllLoginActivity.class));
                             finish();
 
                             databaseReference.child(strUserId).setValue(dataMap);
+                            databaseReference.child("Auth").child(strUserId).setValue(strUserType);
 
                         }
                     }

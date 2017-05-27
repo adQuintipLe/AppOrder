@@ -1,6 +1,7 @@
 package systmorder.apporder;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -17,8 +18,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -31,7 +35,7 @@ public class AdminUserTabView  extends Fragment {
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
-    private FirebaseUser firebaseUser;
+    private FirebaseAuth.AuthStateListener firebaseAithListener;
 
     public static String strGetUserId = "";
 
@@ -50,8 +54,9 @@ public class AdminUserTabView  extends Fragment {
         ActionBar mbar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         mbar.setTitle("User Details");
 
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-//        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+//        firebaseUser = firebaseAuth.getCurrentUser();
+//        strGetUserId = firebaseUser.getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("tblUser");
 
         txtViewUserEmail = (TextView) v.findViewById(R.id.txtViewUserEmail);
@@ -64,8 +69,10 @@ public class AdminUserTabView  extends Fragment {
         txtViewUserName.setText(AdminUserTab.strAllNameList);
 
         edtViewUserType = (EditText) v.findViewById(R.id.edtViewUserType);
+        edtViewUserType.setText(AdminUserTab.strUserTypeList);
 
         btnsave = (Button) v.findViewById(R.id.btnsave);
+
 
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,8 +84,10 @@ public class AdminUserTabView  extends Fragment {
 //                databaseReference.child(AllRegisterActivity.strUserId).child(strGetUserId).child("userEmail").setValue(AdminUserTab.strAllEmailList);
 //                databaseReference.child(AllRegisterActivity.strUserId).child(strGetUserId).child("userPass").setValue(AdminUserTab.strAllPassList);
 //                databaseReference.child(AllRegisterActivity.strUserId).child(strGetUserId).child("userName").setValue(AdminUserTab.strAllNameList);
-                databaseReference.child(AdminUserTab.strUserID).child(firebaseUser.getUid()).child("userType").setValue(strUserType);
+                databaseReference.child(AdminUserTab.strUserId).child("userType").setValue(strUserType);
+                databaseReference.child("Auth").child(AdminUserTab.strUserId).setValue(strUserType);
 
+//                newPost.push().setValue(new AdminUserTabView());
 //                HashMap<String, String> dataMap = new HashMap<String, String>();
 //                dataMap.put("userEmail", AdminUserTab.strAllEmailList);
 //                dataMap.put("userPass", AdminUserTab.strAllPassList);

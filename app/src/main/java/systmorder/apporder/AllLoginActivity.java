@@ -17,8 +17,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class AllLoginActivity extends AppCompatActivity {
@@ -28,6 +31,10 @@ public class AllLoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
+    private FirebaseAuth.AuthStateListener firebaseAuthListener;
+
+    public static String strAllLoginID = "";
+    public static String strPassword = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,7 +48,6 @@ public class AllLoginActivity extends AppCompatActivity {
         edtPsswrd = (EditText)findViewById(R.id.edtPsswrd);
         btnLogin = (Button)findViewById(R.id.btnLogin);
         btnReg = (TextView) findViewById(R.id.btnReg);
-
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
