@@ -13,18 +13,22 @@ public class UserList {
     private String userPass;
     private String userName;
     private String userType;
+    private String userRestrntID;
+    private String userRestrntName;
 
     public UserList(){
 
     }
 
-    public UserList (String userEmail,String userID, String userPass, String userName, String userType){
+    public UserList (String userEmail,String userID, String userPass, String userName, String userType, String userRestrntID,String userRestrntName){
 
         this.userEmail = userEmail;
         this.userID = userID;
         this.userPass = userPass;
         this.userName = userName;
         this.userType = userType;
+        this.userRestrntID = userRestrntID;
+        this.userRestrntName = userRestrntName;
 
     }
 
@@ -66,5 +70,21 @@ public class UserList {
 
     public void setUserType(String userType){
         this.userType = userType;
+    }
+
+    public String getUserRestrntID(){
+        return userRestrntID;
+    }
+
+    public void setUserRestrntID(String userRestrntID){
+        this.userRestrntID = userRestrntID;
+    }
+
+    public String getUserRestrntName(){
+        return userRestrntName;
+    }
+
+    public void setUserRestrntName(String userRestrntName){
+        this.userRestrntName = userRestrntName;
     }
 }

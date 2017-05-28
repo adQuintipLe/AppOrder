@@ -35,6 +35,8 @@ public class AdminUserTab extends Fragment {
     public static String strAllPassList = "";
     public static String strAllNameList = "";
     public static String strUserTypeList = "";
+    public static String strRestrntID = "";
+    public static String strRestrntName = "";
 
     @Nullable
     @Override
@@ -85,6 +87,8 @@ public class AdminUserTab extends Fragment {
                         strAllPassList = model.getUserPass();
                         strAllNameList = model.getUserName();
                         strUserTypeList = model.getUserType();
+                        strRestrntID = model.getUserRestrntID();
+                        strRestrntName = model.getUserRestrntName();
 
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                         AdminUserTabView fragAdminUserTabView = new AdminUserTabView();
