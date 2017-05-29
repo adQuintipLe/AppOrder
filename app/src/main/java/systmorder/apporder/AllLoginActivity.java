@@ -36,6 +36,7 @@ public class AllLoginActivity extends AppCompatActivity {
 
     public static String strAllLoginID = "";
     public static String strUserType = "";
+    public static String strAllRestrntID = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
