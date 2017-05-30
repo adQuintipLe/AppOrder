@@ -71,7 +71,7 @@ public class AdminUserTab extends Fragment {
                 UserList.class,
                 R.layout.admin_fragment_user_tabrow,
                 UserViewHolder.class,
-                databaseReference.child(AllRegisterActivity.strUserId)
+                databaseReference.child("User").child(AllRegisterActivity.strUserId)
 
         ) {
             @Override

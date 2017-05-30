@@ -129,7 +129,7 @@ public class AllRegisterActivity extends AppCompatActivity {
                             startActivity(new Intent(AllRegisterActivity.this, AllLoginActivity.class));
                             finish();
 
-                            databaseReference.child(strUserId).setValue(dataMap);
+                            databaseReference.child("User").child(strUserId).setValue(dataMap);
                             databaseReference.child("Auth").child(strUserId).setValue(strUserType);
                             databaseReference.child("AuthRes").child(strUserId).setValue(strRestId);
 

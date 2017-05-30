@@ -90,13 +90,13 @@ public class AdminUserTabView  extends Fragment {
                 final String strRstrntId = edtViewRestrntId.getText().toString().trim();
                 final String strRstrntName = edtViewRestrbtName.getText().toString().trim();
 
-                databaseReference.child(AdminUserTab.strUserId).child("userType").setValue(strUserType);
-                databaseReference.child(AdminUserTab.strUserId).child("userRestaurantID").setValue(strRstrntId);
-                databaseReference.child(AdminUserTab.strUserId).child("userRestaurantName").setValue(strRstrntName);
+                databaseReference.child("User").child(AdminUserTab.strUserId).child("userType").setValue(strUserType);
+                databaseReference.child("User").child(AdminUserTab.strUserId).child("userRestaurantID").setValue(strRstrntId);
+                databaseReference.child("User").child(AdminUserTab.strUserId).child("userRestaurantName").setValue(strRstrntName);
 //                databaseReference.child(AdminUserTab.strUserId).child("userRole").child(strUserType).child("userRestrntID").setValue(strRstrntId);
 //                databaseReference.child(AdminUserTab.strUserId).child("userRole").child(strUserType).child("userRestrntID").setValue(strRstrntName);
                 databaseReference.child("Auth").child(AdminUserTab.strUserId).setValue(strUserType);
-//                databaseReference.child("Buth").child(strRstrntId).setValue(strRstrntName);
+                databaseReference.child("AuthRes").child(AdminUserTab.strUserId).setValue(strRstrntId);
 
             }
         });
