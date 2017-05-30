@@ -74,10 +74,10 @@ public class AdminUserTabView  extends Fragment {
         edtViewUserType.setText(AdminUserTab.strUserTypeList);
 
         edtViewRestrntId = (EditText) v.findViewById(R.id.edtViewRestrntId);
-        edtViewRestrntId.setText(AdminUserTab.strRestrntID);
+        edtViewRestrntId.setText(AdminUserTab.strRestaurantId);
 
         edtViewRestrbtName = (EditText) v.findViewById(R.id.edtViewRestrntName);
-        edtViewRestrbtName.setText(AdminUserTab.strRestrntName);
+        edtViewRestrbtName.setText(AdminUserTab.strStrRestaurantNaMe);
 
         btnsave = (Button) v.findViewById(R.id.btnsave);
 
@@ -90,24 +90,13 @@ public class AdminUserTabView  extends Fragment {
                 final String strRstrntId = edtViewRestrntId.getText().toString().trim();
                 final String strRstrntName = edtViewRestrbtName.getText().toString().trim();
 
-//                strGetUserId = firebaseAuth.getCurrentUser().getUid();
-//                databaseReference.child(AllRegisterActivity.strUserId).child(strGetUserId).child("userEmail").setValue(AdminUserTab.strAllEmailList);
-//                databaseReference.child(AllRegisterActivity.strUserId).child(strGetUserId).child("userPass").setValue(AdminUserTab.strAllPassList);
-//                databaseReference.child(AllRegisterActivity.strUserId).child(strGetUserId).child("userName").setValue(AdminUserTab.strAllNameList);
                 databaseReference.child(AdminUserTab.strUserId).child("userType").setValue(strUserType);
-                databaseReference.child(AdminUserTab.strUserId).child("userRole").child(strUserType).child("restrnID").setValue(strRstrntId);
-                databaseReference.child(AdminUserTab.strUserId).child("userRole").child(strUserType).child("restrnName").setValue(strRstrntName);
+                databaseReference.child(AdminUserTab.strUserId).child("userRestaurantID").setValue(strRstrntId);
+                databaseReference.child(AdminUserTab.strUserId).child("userRestaurantName").setValue(strRstrntName);
+//                databaseReference.child(AdminUserTab.strUserId).child("userRole").child(strUserType).child("userRestrntID").setValue(strRstrntId);
+//                databaseReference.child(AdminUserTab.strUserId).child("userRole").child(strUserType).child("userRestrntID").setValue(strRstrntName);
                 databaseReference.child("Auth").child(AdminUserTab.strUserId).setValue(strUserType);
-
-//                newPost.push().setValue(new AdminUserTabView());
-//                HashMap<String, String> dataMap = new HashMap<String, String>();
-//                dataMap.put("userEmail", AdminUserTab.strAllEmailList);
-//                dataMap.put("userPass", AdminUserTab.strAllPassList);
-//                dataMap.put("userName", AdminUserTab.strAllNameList);
-//                dataMap.put("userType", strUserType);
-//
-//                databaseReference.child(AllRegisterActivity.strUserId).setValue(dataMap);
-
+//                databaseReference.child("Buth").child(strRstrntId).setValue(strRstrntName);
 
             }
         });

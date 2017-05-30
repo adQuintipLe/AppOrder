@@ -55,6 +55,7 @@ public class AllLoginActivity extends AppCompatActivity {
             firebaseAuth.signOut();
         }
 
+
         firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull final FirebaseAuth firebaseAuth) {
@@ -69,6 +70,9 @@ public class AllLoginActivity extends AppCompatActivity {
 
                             strUserType = dataSnapshot.getValue().toString();
                             Log.v("strUserType", strUserType);
+                            strAllRestrntID = AdminUserTab.strRestaurantId;
+                            Log.v("strTester", strAllRestrntID);
+
                             databaseReference.child(AdminUserTab.strUserId).child(strUserType);
 
                             if (strUserType.equals("manager")){

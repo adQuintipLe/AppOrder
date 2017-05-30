@@ -13,22 +13,22 @@ public class UserList {
     private String userPass;
     private String userName;
     private String userType;
-    private String userRestrntID;
-    private String userRestrntName;
+    private String userRestaurantID;
+    private String userRestaurantName;
 
     public UserList(){
 
     }
 
-    public UserList (String userEmail,String userID, String userPass, String userName, String userType, String userRestrntID,String userRestrntName){
+    public UserList (String userEmail,String userID, String userPass, String userName, String userType, String userRestaurantID, String userRestaurantName){
 
         this.userEmail = userEmail;
         this.userID = userID;
         this.userPass = userPass;
         this.userName = userName;
         this.userType = userType;
-        this.userRestrntID = userRestrntID;
-        this.userRestrntName = userRestrntName;
+        this.userRestaurantID = userRestaurantID;
+        this.userRestaurantName = userRestaurantName;
 
     }
 
@@ -72,19 +72,19 @@ public class UserList {
         this.userType = userType;
     }
 
-    public String getUserRestrntID(){
-        return userRestrntID;
+    public String getUserRestaurantID() {
+        return userRestaurantID;
     }
 
-    public void setUserRestrntID(String userRestrntID){
-        this.userRestrntID = userRestrntID;
+    public void setUserRestaurantID(String userRestaurantID) {
+        this.userRestaurantID = userRestaurantID;
     }
 
-    public String getUserRestrntName(){
-        return userRestrntName;
+    public String getUserRestaurantName() {
+        return userRestaurantName;
     }
 
-    public void setUserRestrntName(String userRestrntName){
-        this.userRestrntName = userRestrntName;
+    public void setUserRestaurantName(String userRestaurantName) {
+        this.userRestaurantName = userRestaurantName;
     }
 }
