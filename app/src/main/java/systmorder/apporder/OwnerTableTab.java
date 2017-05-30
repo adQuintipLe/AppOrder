@@ -83,7 +83,7 @@ public class OwnerTableTab extends Fragment {
                                 public void onClick(DialogInterface dialog, int id  ) {
 
                                     String strresID = "table 1";
-                                    databaseReference.child(AllLoginActivity.strAllLoginID).child("tblTable").child(strresID).child(strresID).setValue("hi");
+                                    databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblTable").child(strresID).child(strresID).setValue("hi");
 
                                     Toast.makeText(getActivity(), "hi", Toast.LENGTH_SHORT).show();
                                 }

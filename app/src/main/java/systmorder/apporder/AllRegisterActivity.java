@@ -131,6 +131,7 @@ public class AllRegisterActivity extends AppCompatActivity {
 
                             databaseReference.child(strUserId).setValue(dataMap);
                             databaseReference.child("Auth").child(strUserId).setValue(strUserType);
+                            databaseReference.child("AuthRes").child(strUserId).setValue(strRestId);
 
                         }
                     }

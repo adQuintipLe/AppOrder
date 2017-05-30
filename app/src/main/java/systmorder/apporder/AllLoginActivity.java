@@ -64,14 +64,28 @@ public class AllLoginActivity extends AppCompatActivity {
                     strAllLoginID = firebaseAuth.getCurrentUser().getUid();
                     Log.v("strUserID", strAllLoginID);
 
+                    databaseReference.child("AuthRes").child(strAllLoginID).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            strAllRestrntID = dataSnapshot.getValue().toString();
+                            Log.v("test", strAllRestrntID);
+
+                            databaseReference.child(AdminUserTab.strUserId).child(strAllRestrntID);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
                     databaseReference.child("Auth").child(strAllLoginID).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
                             strUserType = dataSnapshot.getValue().toString();
                             Log.v("strUserType", strUserType);
-                            strAllRestrntID = AdminUserTab.strRestaurantId;
-                            Log.v("strTester", strAllRestrntID);
 
                             databaseReference.child(AdminUserTab.strUserId).child(strUserType);
 
@@ -91,6 +105,8 @@ public class AllLoginActivity extends AppCompatActivity {
 
                         }
                     });
+
+
                 }
             }
         };
