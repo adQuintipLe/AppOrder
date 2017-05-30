@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -36,6 +37,7 @@ public class OwnerTableTab extends Fragment {
     private DatabaseReference databaseReference;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
     private FirebaseAuth firebaseAuth;
+    private RecyclerView rvAllTable;
 
     public static String testshj = "";
 
@@ -57,7 +59,29 @@ public class OwnerTableTab extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("tblRstrn");
+
+        rvAllTable = (RecyclerView) v.findViewById(R.id.rvAllTable);
+        rvAllTable.setHasFixedSize(true);
+        rvAllTable.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//
+//        FirebaseRecyclerAdapter<TableList, TableViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<TableList, TableViewHolder>(
+//
+//                TableList.class,
+//                R.layout.owner_fragment_table_tabrow,
+//                TableViewHolder.class,
+//                databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblTable").child("table 1")
+//        ) {
+//            @Override
+//            protected void populateViewHolder(TableViewHolder viewHolder, TableList model, int position) {
+//
+//            }
+//        }
+//    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -83,7 +107,7 @@ public class OwnerTableTab extends Fragment {
                                 public void onClick(DialogInterface dialog, int id  ) {
 
                                     String strresID = "table 1";
-                                    databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblTable").child(strresID).child(strresID).setValue("hi");
+                                    databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblTable").child(strresID).child("tableNo").setValue(strresID);
 
                                     Toast.makeText(getActivity(), "Table added", Toast.LENGTH_SHORT).show();
                                 }
