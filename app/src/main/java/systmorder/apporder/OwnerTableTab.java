@@ -85,7 +85,7 @@ public class OwnerTableTab extends Fragment {
                                     String strresID = "table 1";
                                     databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblTable").child(strresID).child(strresID).setValue("hi");
 
-                                    Toast.makeText(getActivity(), "hi", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), "Table added", Toast.LENGTH_SHORT).show();
                                 }
                             })
                     .setNegativeButton("Cancel",
