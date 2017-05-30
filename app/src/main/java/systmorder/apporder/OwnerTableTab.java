@@ -39,7 +39,8 @@ public class OwnerTableTab extends Fragment {
     private FirebaseAuth firebaseAuth;
     private RecyclerView rvAllTable;
 
-    public static String testshj = "";
+    public static String strTableNo = "";
+    public static String strresID="";
 
     @Nullable
     @Override
@@ -65,23 +66,51 @@ public class OwnerTableTab extends Fragment {
         rvAllTable.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//
-//        FirebaseRecyclerAdapter<TableList, TableViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<TableList, TableViewHolder>(
-//
-//                TableList.class,
-//                R.layout.owner_fragment_table_tabrow,
-//                TableViewHolder.class,
-//                databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblTable").child("table 1")
-//        ) {
-//            @Override
-//            protected void populateViewHolder(TableViewHolder viewHolder, TableList model, int position) {
-//
-//            }
-//        }
-//    }
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        FirebaseRecyclerAdapter<TableList, TableViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<TableList, TableViewHolder>(
+
+                TableList.class,
+                R.layout.owner_fragment_table_tabrow,
+                TableViewHolder.class,
+                databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblTable").child(strresID)
+
+        ) {
+            @Override
+            protected void populateViewHolder(TableViewHolder viewHolder, final TableList model, int position) {
+
+                viewHolder.setTableNo(model.getTableNo());
+                viewHolder.fView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        strTableNo = model.getTableNo();
+
+                    }
+                });
+            }
+        };
+
+        rvAllTable.setAdapter(firebaseRecyclerAdapter);
+        Log.v("hai", AllLoginActivity.strAllRestrntID);
+    }
+
+    public static class TableViewHolder extends RecyclerView.ViewHolder{
+
+        View fView;
+
+        public TableViewHolder(View itemView) {
+            super(itemView);
+            fView = itemView;
+        }
+
+        public void setTableNo(String tableNo) {
+            TextView txtTableNo = (TextView) fView.findViewById(R.id.txtAllTableNo);
+            txtTableNo.setText(tableNo);
+        }
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -95,10 +124,17 @@ public class OwnerTableTab extends Fragment {
 
         if (id == R.id.addTable) {
 
+            LayoutInflater li = LayoutInflater.from(getActivity());
+            final View promptsView = li.inflate(R.layout.testtable, null);
+
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                     getActivity());
 
-            DatabaseReference df = FirebaseDatabase.getInstance().getReference().child("tblRestrn");
+            alertDialogBuilder.setView(promptsView);
+
+            final EditText userInputTbl = (EditText) promptsView
+                    .findViewById(R.id.edttblno);
+
 
             alertDialogBuilder.setMessage("Add New Table?")
                     .setCancelable(false)
@@ -106,7 +142,8 @@ public class OwnerTableTab extends Fragment {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id  ) {
 
-                                    String strresID = "table 1";
+                                    strresID = userInputTbl.getText().toString();
+//                                    strresID = "table 1";
                                     databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblTable").child(strresID).child("tableNo").setValue(strresID);
 
                                     Toast.makeText(getActivity(), "Table added", Toast.LENGTH_SHORT).show();
