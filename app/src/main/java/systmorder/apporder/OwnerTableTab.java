@@ -146,6 +146,7 @@ public class OwnerTableTab extends Fragment {
 //                                    strresID = "table 1";
                                     databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblTable").child(strresID).child("tableNo").setValue(strresID);
 
+                                    Log.v("hello", AllLoginActivity.strAllRestrntID);
                                     Toast.makeText(getActivity(), "Table added", Toast.LENGTH_SHORT).show();
                                 }
                             })

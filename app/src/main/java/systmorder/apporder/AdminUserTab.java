@@ -98,7 +98,6 @@ public class AdminUserTab extends Fragment {
                     }
                 });
 
-
             }
         };
         rvAllUser.setAdapter(firebaseRecyclerAdapter);
