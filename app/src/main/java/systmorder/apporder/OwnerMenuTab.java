@@ -6,6 +6,7 @@ import android.opengl.GLException;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -80,6 +81,19 @@ public class OwnerMenuTab extends Fragment {
             protected void populateViewHolder(MenuViewHolder viewHolder, final MenuList model, int position) {
 
                 viewHolder.setMenuMain(model.getMenuMain());
+                viewHolder.fView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        strMenuMain = model.getMenuMain();
+
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        OwnerMenuTabView fragOwnerMenuTabView = new OwnerMenuTabView();
+                        transaction.replace(R.id.owner_activity_main, fragOwnerMenuTabView);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                    }
+                });
             }
         };
         rvAllMenuCatogery.setAdapter(firebaseRecyclerAdapter);
