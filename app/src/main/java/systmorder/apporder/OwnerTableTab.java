@@ -26,10 +26,16 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class OwnerTableTab extends Fragment {
@@ -40,7 +46,8 @@ public class OwnerTableTab extends Fragment {
     private RecyclerView rvAllTable;
 
     public static String strTableNo = "";
-    public static String strresID="";
+    public static String strresID = "";
+    public static String strGetTableNo = "";
 
     @Nullable
     @Override
@@ -64,6 +71,7 @@ public class OwnerTableTab extends Fragment {
         rvAllTable = (RecyclerView) v.findViewById(R.id.rvAllTable);
         rvAllTable.setHasFixedSize(true);
         rvAllTable.setLayoutManager(new LinearLayoutManager(getActivity()));
+
     }
 
     @Override
@@ -76,6 +84,7 @@ public class OwnerTableTab extends Fragment {
                 R.layout.owner_fragment_table_tabrow,
                 TableViewHolder.class,
                 databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblTable").child(strresID)
+
 
         ) {
             @Override
@@ -142,12 +151,13 @@ public class OwnerTableTab extends Fragment {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id  ) {
 
-                                    strresID = userInputTbl.getText().toString();
+                                    strTableNo = userInputTbl.getText().toString();
 //                                    strresID = "table 1";
-                                    databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblTable").child(strresID).child("tableNo").setValue(strresID);
+                                    databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblTable").child(strTableNo).child("tableNo").setValue(strTableNo);
 
                                     Log.v("hello", AllLoginActivity.strAllRestrntID);
                                     Toast.makeText(getActivity(), "Table added", Toast.LENGTH_SHORT).show();
+
                                 }
                             })
                     .setNegativeButton("Cancel",
