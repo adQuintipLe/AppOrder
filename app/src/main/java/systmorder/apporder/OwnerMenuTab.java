@@ -2,12 +2,15 @@ package systmorder.apporder;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.opengl.GLException;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,10 +24,20 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class OwnerMenuTab extends Fragment {
 
 //    final OwnerMenuTab context = this;
+    private DatabaseReference databaseReference;
+    private FirebaseAuth firebaseAuth;
+    private RecyclerView rvAllMenuCatogery;
+
+    public String strMenuMain = "";
 
     @Nullable
     @Override
@@ -43,6 +56,49 @@ public class OwnerMenuTab extends Fragment {
         ActionBar mbar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         mbar.setTitle("test");
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("tblRstrn");
+
+        rvAllMenuCatogery = (RecyclerView) v.findViewById(R.id.rvAllMenuCatogery);
+        rvAllMenuCatogery.setHasFixedSize(true);
+        rvAllMenuCatogery.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        FirebaseRecyclerAdapter<MenuList, MenuViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<MenuList, MenuViewHolder>(
+
+                MenuList.class,
+                R.layout.owner_fragment_menu_tabrow,
+                MenuViewHolder.class,
+                databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu")
+        ) {
+            @Override
+            protected void populateViewHolder(MenuViewHolder viewHolder, final MenuList model, int position) {
+
+                viewHolder.setMenuMain(model.getMenuMain());
+            }
+        };
+        rvAllMenuCatogery.setAdapter(firebaseRecyclerAdapter);
+    }
+
+    public static class MenuViewHolder extends RecyclerView.ViewHolder{
+
+        View fView;
+
+        public MenuViewHolder(View itemView) {
+            super(itemView);
+
+            fView = itemView;
+        }
+
+        public void setMenuMain(String menuMain) {
+            TextView txtAllMenuCategory = (TextView)fView.findViewById(R.id.txtAllMenuCategory);
+            txtAllMenuCategory.setText(menuMain);
+        }
     }
 
     @Override
@@ -75,26 +131,11 @@ public class OwnerMenuTab extends Fragment {
                     .setPositiveButton("OK",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id  ) {
-                                    String srt = userInput.getText().toString();
+                                    strMenuMain = userInput.getText().toString();
 
-                                    LinearLayout ll = (LinearLayout) getView().findViewById(R.id.llayout);
+                                    databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu").child(strMenuMain).child("menuMain").setValue(strMenuMain);
 
-                                    Button[] btn = new Button[1];
-
-                                    for (int i = 0; i < 1; i++){
-                                        btn[i] = new Button(getActivity());
-                                        btn[i].setId(i+1);
-                                        btn[i].setText(userInput.getText());
-                                        ll.addView(btn[i]);
-                                        btn[i].setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                                public void onClick(View view) {
-                                                startActivity(new Intent(getActivity(), AllRegisterActivity.class));
-                                                }
-                                        });
-
-                                    }
-                                    Toast.makeText(getActivity(),srt, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getActivity(),strMenuMain, Toast.LENGTH_LONG).show();
                                 }
                             })
                     .setNegativeButton("Cancel",
