@@ -140,7 +140,7 @@ public class OwnerMenuTabView extends Fragment {
                                     strMenuItem = userInputMenu.getText().toString();
 
                                     databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu").child(OwnerMenuTab.strMenuMain)
-                                            .child(OwnerMenuTab.strMenuMain).child(strMenuItem).child("menuName").setValue(strMenuItem);
+                                            .child(OwnerMenuTab.strMenuMain).child(strMenuItem).child("menuItem").setValue(strMenuItem);
                                     Toast.makeText(getActivity(),strMenuItem, Toast.LENGTH_LONG).show();
                                 }
                             })
