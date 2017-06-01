@@ -5,14 +5,14 @@
     <item
         android:id="@+id/modifyMenuCatogery"
         android:icon="@drawable/ic_action_setting"
-        android:title="menu"
+        android:title="menuCatogery"
         app:showAsAction="always"
         />
 
     <item
-        android:id="@+id/modifyMenuDetails"
-        android:icon="@drawable/ic_action_name_edit"
-        android:title="cart"
+        android:id="@+id/addMenu"
+        android:icon="@drawable/ic_action_add_category"
+        android:title="menu"
         app:showAsAction="always"
         />
 

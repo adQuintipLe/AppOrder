@@ -7,13 +7,15 @@ package systmorder.apporder;
 public class MenuList {
 
     private String menuMain;
+    private String menuItem;
 
     MenuList(){
 
     }
 
-    public MenuList(String menuMain) {
+    public MenuList(String menuMain, String menuItem) {
         this.menuMain = menuMain;
+        this.menuItem = menuItem;
     }
 
     public String getMenuMain() {
@@ -22,5 +24,13 @@ public class MenuList {
 
     public void setMenuMain(String menuMain) {
         this.menuMain = menuMain;
+    }
+
+    public String getMenuItem() {
+        return menuItem;
+    }
+
+    public void setMenuItem(String menuItem) {
+        this.menuItem = menuItem;
     }
 }

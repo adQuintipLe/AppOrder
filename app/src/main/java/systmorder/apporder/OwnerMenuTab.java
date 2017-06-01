@@ -38,7 +38,7 @@ public class OwnerMenuTab extends Fragment {
     private FirebaseAuth firebaseAuth;
     private RecyclerView rvAllMenuCatogery;
 
-    public String strMenuMain = "";
+    public static String strMenuMain = "";
 
     @Nullable
     @Override
