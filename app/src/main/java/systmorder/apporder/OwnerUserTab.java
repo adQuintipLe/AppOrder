@@ -61,7 +61,7 @@ public class OwnerUserTab extends Fragment {
         FirebaseRecyclerAdapter<UserList, UserViewHolderStaff> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<UserList, UserViewHolderStaff>(
 
                 UserList.class,
-                R.layout.owner_fragment_table_tabrow,
+                R.layout.owner_fragment_user_tabrow,
                 UserViewHolderStaff.class,
                 databaseReference.child("User").child(AllRegisterActivity.strUserId)
 
