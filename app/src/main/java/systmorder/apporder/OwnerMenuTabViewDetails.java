@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -30,5 +32,11 @@ public class OwnerMenuTabViewDetails extends Fragment {
 
         ActionBar mbar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         mbar.setTitle(OwnerMenuTabView.strMenuItem);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.owner_modify_menu_details, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }

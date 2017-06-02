@@ -1,6 +1,7 @@
 package systmorder.apporder;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.DialogPreference;
 import android.support.annotation.Nullable;
@@ -125,6 +126,13 @@ public class OwnerMenuTabView extends Fragment {
         int id = item.getItemId();
 
         if (id == R.id.modifyMenuCatogery){
+
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            DeleteLater fragDeleteLater = new DeleteLater();
+            transaction.replace(R.id.owner_activity_main, fragDeleteLater);
+            transaction.addToBackStack(null);
+            transaction.commit();
+
 
         }else if (id == R.id.addMenu){
 
