@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.preference.DialogPreference;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -51,7 +52,7 @@ public class OwnerMenuTabView extends Fragment {
         View v = getView();
 
         ActionBar mbar = ((AppCompatActivity)getActivity()).getSupportActionBar();
-        mbar.setTitle("Menu Items");
+        mbar.setTitle(OwnerMenuTab.strMenuMain);
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("tblRstrn");
@@ -82,6 +83,12 @@ public class OwnerMenuTabView extends Fragment {
                     public void onClick(View view) {
 
                         strMenuItem = model.getMenuItem();
+
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        OwnerMenuTabViewDetails fragOwnerMenuTabViewDetails = new OwnerMenuTabViewDetails();
+                        transaction.replace(R.id.owner_activity_main, fragOwnerMenuTabViewDetails);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
                     }
                 });
 
