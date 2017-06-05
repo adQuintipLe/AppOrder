@@ -90,7 +90,7 @@ public class AllLoginActivity extends AppCompatActivity {
                             databaseReference.child(AdminUserTab.strUserId).child(strUserType);
 
                             if (strUserType.equals("manager")){
-                                startActivity(new Intent(AllLoginActivity.this, OwnerChooseActivity.class));
+                                startActivity(new Intent(AllLoginActivity.this, OwnerMainActivity.class));
                             } else if (strUserType.equals("staff")){
                                 startActivity(new Intent(AllLoginActivity.this, StaffChooseActivity.class));
                             } else if (strUserType.equals("customer")){
