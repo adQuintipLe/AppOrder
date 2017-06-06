@@ -73,11 +73,11 @@ public class OwnerMenuTabViewDetails extends Fragment {
 
         if (id == R.id.modifyMenuCatogery){
 
-//            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//            OwnerMenuTabEditDetails fragOwnerMenuTabEditDetails = new OwnerMenuTabEditDetails();
-//            transaction.replace(R.id.owner_activity_main, fragOwnerMenuTabEditDetails);
-//            transaction.addToBackStack(null);
-//            transaction.commit();
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            OwnerMenuTabEditDetails fragOwnerMenuTabEditDetails = new OwnerMenuTabEditDetails();
+            transaction.replace(R.id.owner_activity_main, fragOwnerMenuTabEditDetails);
+            transaction.addToBackStack(null);
+            transaction.commit();
 
         }
         return super.onOptionsItemSelected(item);

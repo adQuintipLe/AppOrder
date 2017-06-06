@@ -7,34 +7,13 @@
     android:id="@+id/llayoutTable">
 
     <ImageView
-        android:id="@+id/ivUpNewPic"
         android:layout_width="match_parent"
         android:layout_height="250dp"/>
 
-    <LinearLayout
+
+    <ListView
+        android:id="@+id/yolo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.RecyclerView
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:id="@+id/rvItemName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </android.support.v7.widget.RecyclerView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.RecyclerView
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:id="@+id/rvItemPrice"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </android.support.v7.widget.RecyclerView>
-
-    </LinearLayout>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
