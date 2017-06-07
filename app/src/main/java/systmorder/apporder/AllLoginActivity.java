@@ -30,6 +30,7 @@ public class AllLoginActivity extends AppCompatActivity {
     private EditText edtEmail, edtPsswrd;
     private TextView btnReg;
     private Button btnLogin;
+    private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
@@ -50,6 +51,7 @@ public class AllLoginActivity extends AppCompatActivity {
         edtPsswrd = (EditText)findViewById(R.id.edtPsswrd);
         btnLogin = (Button)findViewById(R.id.btnLogin);
         btnReg = (TextView) findViewById(R.id.btnReg);
+        progressDialog = new ProgressDialog(this);
 
         if (firebaseAuth.getCurrentUser() !=null){
             firebaseAuth.signOut();
@@ -152,6 +154,8 @@ public class AllLoginActivity extends AppCompatActivity {
             return;
 
         }
+        progressDialog.setMessage("Login...");
+        progressDialog.show();
 
         firebaseAuth.signInWithEmailAndPassword(strUserEmail, strUserPass).addOnCompleteListener
                 (AllLoginActivity.this, new OnCompleteListener<AuthResult>() {
@@ -159,12 +163,14 @@ public class AllLoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()){
                             if (strUserPass.length() < 6){
+                                progressDialog.dismiss();
                                 edtPsswrd.setError("Password too short, enter minimum 6 characters");
                             } else {
+                                progressDialog.dismiss();
                                 Toast.makeText(AllLoginActivity.this, "Authentication failed, check your email and password", Toast.LENGTH_SHORT).show();
                             }
                         } else {
-
+                            progressDialog.dismiss();
                             Toast.makeText(AllLoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
 
                         }

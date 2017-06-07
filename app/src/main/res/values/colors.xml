@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="infoColor">#33b5e5</color>
     <color name="infoColorDark">#0099CC</color>
+    <color name="warningColor">#ffbb33</color>
+    <color name="warningColorDark">#FF8800</color>
 </resources>
