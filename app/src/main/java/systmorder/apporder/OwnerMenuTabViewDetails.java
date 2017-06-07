@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,10 +20,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -38,6 +45,7 @@ public class OwnerMenuTabViewDetails extends Fragment {
     private ImageView imgView;
 
     public static String strMenuItemName = "";
+    public static String strMenuItemImage = "";
 
     @Nullable
     @Override
@@ -59,13 +67,67 @@ public class OwnerMenuTabViewDetails extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("tblRstrn");
 
         imgView = (ImageView) v.findViewById(R.id.imgView);
-        Picasso.with(getActivity()).load(OwnerMenuTabEditDetails.uriImg).into(imgView);
+//        Picasso.with(getActivity()).load(OwnerMenuTabEditDetails.uriImg).into(imgView);
 
         tvItemName = (TextView) v.findViewById(R.id.tvItemName);
         tvItemName.setText(OwnerMenuTabView.strMenuItem);
 
         tvItemPrice = (TextView) v.findViewById(R.id.tvItemPrice);
 
+//        databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu").child(OwnerMenuTab.strMenuMain)
+//                .child(OwnerMenuTab.strMenuMain).child(OwnerMenuTabView.strMenuItem).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//                strMenuItemImage = getContext().getApplicationContext().toString();
+////                strMenuItemImage = dataSnapshot.getValue().toString();
+//                Log.v("Frak1", strMenuItemImage );
+//                strMenuItemName = dataSnapshot.getValue().toString();
+//                Log.v("Frak2", strMenuItemName);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+
+        databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu").child(OwnerMenuTab.strMenuMain)
+                .child(OwnerMenuTab.strMenuMain).child(OwnerMenuTabView.strMenuItem).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+//                strMenuItemImage = dataSnapshot.getValue().toString();
+                strMenuItemImage = getContext().getApplicationContext().toString();
+                Log.v("Frak1", strMenuItemImage );
+                strMenuItemName = dataSnapshot.getValue().toString();
+                Log.v("Frak2", strMenuItemName);
+
+                Picasso.with(getActivity()).load(OwnerMenuTabView.strMenuImage).into(imgView);
+                tvItemName.setText(strMenuItemName);
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
 

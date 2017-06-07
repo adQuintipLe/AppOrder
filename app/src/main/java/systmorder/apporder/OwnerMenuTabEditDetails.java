@@ -24,7 +24,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -105,37 +107,37 @@ public class OwnerMenuTabEditDetails extends Fragment {
         adapter = new ArrayAdapter<String>(getActivity(),R.layout.iwilluseordelete,list);
         yolo.setAdapter(adapter);
 
-        databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu").child(OwnerMenuTab.strMenuMain)
-                .child(OwnerMenuTab.strMenuMain).child(OwnerMenuTabView.strMenuItem).addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                strItemName = dataSnapshot.getValue().toString();
-                Log.v("Frak", strItemName);
-                list.add(strItemName);
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+//        databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu").child(OwnerMenuTab.strMenuMain)
+//                .child(OwnerMenuTab.strMenuMain).child(OwnerMenuTabView.strMenuItem).addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//
+//                strItemName = dataSnapshot.getValue().toString();
+//                Log.v("Frak", strItemName);
+//                list.add(strItemName);
+//                adapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 
     @Override
@@ -165,8 +167,8 @@ public class OwnerMenuTabEditDetails extends Fragment {
             startSaving();
 
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            OwnerMenuTabViewDetails fragOwnerMenuTabViewDetails = new OwnerMenuTabViewDetails();
-            transaction.replace(R.id.owner_activity_main, fragOwnerMenuTabViewDetails);
+            OwnerMenuTabView fragOwnerMenuTabView1 = new OwnerMenuTabView();
+            transaction.replace(R.id.owner_activity_main, fragOwnerMenuTabView1);
             transaction.commit();
 
         }
@@ -189,9 +191,11 @@ public class OwnerMenuTabEditDetails extends Fragment {
                         .child(OwnerMenuTab.strMenuMain).child(OwnerMenuTab.strMenuMain).child(OwnerMenuTabView.strMenuItem);
 
                 newSaving.child("menuImage").setValue(downloadUrl.toString());
+//                newSaving.child("menuImage").setValue(uriImg.getPath());
 
-//                Picasso.with(getActivity()).load(downloadUrl).fit().centerCrop().into(imgBtnEdt);
+//                Picasso.with(getActivity()).load(uriImg).into(imgBtnEdt);
 //                Picasso.with(ctx).load(img).into(imgBtnEdt);
+//                Glide.with(getActivity()).using(new FirebaseImageLoader()).load(storageReference).into(imgBtnEdt);
 
                 progressDialog.dismiss();
             }

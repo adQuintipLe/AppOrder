@@ -1,5 +1,6 @@
 package systmorder.apporder;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -20,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by mansoull on 1/6/2017.
@@ -39,7 +42,7 @@ public class OwnerMenuTabView extends Fragment {
     private RecyclerView rvAllMenuView;
 
     public static String strMenuItem = "";
-//    public static String strMenuImage = OwnerMenuTabEditDetails.uriImg;
+    public static String strMenuImage = "";
 
     @Nullable
     @Override
@@ -81,11 +84,13 @@ public class OwnerMenuTabView extends Fragment {
             protected void populateViewHolder(MenuItemViewHolder viewHolder, final MenuList model, int position) {
 
                 viewHolder.setMenuItem(model.getMenuItem());
+                viewHolder.setMenuImage(getContext().getApplicationContext(),model.getMenuImage());
                 viewHolder.fView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
                         strMenuItem = model.getMenuItem();
+                        strMenuImage = model.getMenuImage();
 
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                         OwnerMenuTabViewDetails fragOwnerMenuTabViewDetails = new OwnerMenuTabViewDetails();
@@ -113,6 +118,11 @@ public class OwnerMenuTabView extends Fragment {
             TextView txtAllMenuView = (TextView)fView.findViewById(R.id.txtAllMenuView);
             txtAllMenuView.setText(menuItem);
 
+        }
+
+        public void setMenuImage(Context context,String menuImage) {
+            final ImageView qwer = (ImageView) fView.findViewById(R.id.qwer);
+            Picasso.with(context).load(menuImage).into(qwer);
         }
     }
 
