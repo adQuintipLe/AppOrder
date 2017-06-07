@@ -43,6 +43,7 @@ public class OwnerMenuTabView extends Fragment {
 
     public static String strMenuItem = "";
     public static String strMenuImage = "";
+    public static String strMenuPrice = "";
 
     @Nullable
     @Override
@@ -85,12 +86,14 @@ public class OwnerMenuTabView extends Fragment {
 
                 viewHolder.setMenuItem(model.getMenuItem());
                 viewHolder.setMenuImage(getContext().getApplicationContext(),model.getMenuImage());
+                viewHolder.setMenuPrice(model.getMenuPrice());
                 viewHolder.fView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
                         strMenuItem = model.getMenuItem();
                         strMenuImage = model.getMenuImage();
+                        strMenuPrice = model.getMenuPrice();
 
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                         OwnerMenuTabViewDetails fragOwnerMenuTabViewDetails = new OwnerMenuTabViewDetails();
@@ -123,6 +126,11 @@ public class OwnerMenuTabView extends Fragment {
         public void setMenuImage(Context context,String menuImage) {
             final ImageView qwer = (ImageView) fView.findViewById(R.id.qwer);
             Picasso.with(context).load(menuImage).into(qwer);
+        }
+
+        public void setMenuPrice(String menuPrice) {
+            TextView txtAllPriceView = (TextView) fView.findViewById(R.id.txtAllPriceView);
+            txtAllPriceView.setText(menuPrice);
         }
     }
 
