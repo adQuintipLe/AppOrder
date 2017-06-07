@@ -1,5 +1,8 @@
 package systmorder.apporder;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,11 +19,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -28,9 +33,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.security.acl.Owner;
 import java.util.ArrayList;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by mansoull on 5/6/2017.
@@ -39,15 +51,21 @@ import java.util.ArrayList;
 public class OwnerMenuTabEditDetails extends Fragment {
 
     private DatabaseReference databaseReference;
+    private StorageReference storageReference;
+    public static Uri uriImg = null;
+    public static Uri downloadUrl = null;
     private FirebaseAuth firebaseAuth;
 
-    private ImageView ivUpNewPic;
+    private ImageButton imgBtnEdt;
     private ListView yolo;
     private ArrayList<String> list = new ArrayList<>();
     private ArrayAdapter<String> adapter;
+    private ProgressDialog progressDialog;
+
+    private static final int GALLERY_REQUEST = 1;
 
     public static String strItemName = "";
-    public static String strItemPrice = "";
+    public static String strItemImg = "";
 
     @Nullable
     @Override
@@ -68,6 +86,20 @@ public class OwnerMenuTabEditDetails extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("tblRstrn");
+        storageReference = FirebaseStorage.getInstance().getReference();
+
+        progressDialog = new ProgressDialog(getActivity());
+
+        imgBtnEdt = (ImageButton) v.findViewById(R.id.imgBtnEdt);
+        imgBtnEdt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                galleryIntent.setType("image/*");
+                startActivityForResult(galleryIntent, GALLERY_REQUEST);
+            }
+        });
 
         yolo = (ListView) v.findViewById(R.id.yolo);
         adapter = new ArrayAdapter<String>(getActivity(),R.layout.iwilluseordelete,list);
@@ -106,6 +138,16 @@ public class OwnerMenuTabEditDetails extends Fragment {
         });
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK){
+
+            uriImg = data.getData();
+            imgBtnEdt.setImageURI(uriImg);
+        }
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -120,6 +162,8 @@ public class OwnerMenuTabEditDetails extends Fragment {
 
         if (id == R.id.saveMenuDetails){
 
+            startSaving();
+
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             OwnerMenuTabViewDetails fragOwnerMenuTabViewDetails = new OwnerMenuTabViewDetails();
             transaction.replace(R.id.owner_activity_main, fragOwnerMenuTabViewDetails);
@@ -127,5 +171,30 @@ public class OwnerMenuTabEditDetails extends Fragment {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void startSaving() {
+
+        progressDialog.setMessage("saving...");
+        progressDialog.show();
+
+        StorageReference filepath = storageReference.child("img").child(uriImg.getLastPathSegment());
+
+        filepath.putFile(uriImg).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                downloadUrl = taskSnapshot.getDownloadUrl();
+                DatabaseReference newSaving = databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu")
+                        .child(OwnerMenuTab.strMenuMain).child(OwnerMenuTab.strMenuMain).child(OwnerMenuTabView.strMenuItem);
+
+                newSaving.child("menuImage").setValue(downloadUrl.toString());
+
+//                Picasso.with(getActivity()).load(downloadUrl).fit().centerCrop().into(imgBtnEdt);
+//                Picasso.with(ctx).load(img).into(imgBtnEdt);
+
+                progressDialog.dismiss();
+            }
+        });
     }
 }

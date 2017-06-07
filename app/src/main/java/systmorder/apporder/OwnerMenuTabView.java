@@ -2,6 +2,7 @@ package systmorder.apporder;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.DialogPreference;
 import android.support.annotation.Nullable;
@@ -38,6 +39,7 @@ public class OwnerMenuTabView extends Fragment {
     private RecyclerView rvAllMenuView;
 
     public static String strMenuItem = "";
+//    public static String strMenuImage = OwnerMenuTabEditDetails.uriImg;
 
     @Nullable
     @Override

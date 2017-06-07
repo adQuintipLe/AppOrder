@@ -7,8 +7,12 @@
     android:id="@+id/llayoutTable">
 
     <ImageView
+        android:id="@+id/imgView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_action_insert_photo"/>
 
     <TextView
         android:id="@+id/tvItemName"

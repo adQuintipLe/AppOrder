@@ -9,15 +9,17 @@ public class MenuList {
     private String menuMain;
     private String menuItem;
     private String menuPrice;
+    private String menuImage;
 
     MenuList(){
 
     }
 
-    public MenuList(String menuMain, String menuItem, String menuPrice) {
+    public MenuList(String menuMain, String menuItem, String menuPrice, String menuImage) {
         this.menuMain = menuMain;
         this.menuItem = menuItem;
         this.menuPrice = menuPrice;
+        this.menuImage = menuImage;
     }
 
     public String getMenuMain() {
@@ -42,5 +44,13 @@ public class MenuList {
 
     public void setMenuPrice(String menuPrice) {
         this.menuPrice = menuPrice;
+    }
+
+    public String getMenuImage() {
+        return menuImage;
+    }
+
+    public void setMenuImage(String menuImage) {
+        this.menuImage = menuImage;
     }
 }
