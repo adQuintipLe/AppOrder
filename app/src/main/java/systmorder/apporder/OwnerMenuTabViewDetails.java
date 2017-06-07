@@ -68,11 +68,13 @@ public class OwnerMenuTabViewDetails extends Fragment {
 
         imgView = (ImageView) v.findViewById(R.id.imgView);
 //        Picasso.with(getActivity()).load(OwnerMenuTabEditDetails.uriImg).into(imgView);
+        Picasso.with(getActivity()).load(OwnerMenuTabView.strMenuImage).into(imgView);
 
         tvItemName = (TextView) v.findViewById(R.id.tvItemName);
         tvItemName.setText(OwnerMenuTabView.strMenuItem);
 
         tvItemPrice = (TextView) v.findViewById(R.id.tvItemPrice);
+        tvItemPrice.setText(OwnerMenuTabView.strMenuPrice);
 
 //        databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu").child(OwnerMenuTab.strMenuMain)
 //                .child(OwnerMenuTab.strMenuMain).child(OwnerMenuTabView.strMenuItem).addValueEventListener(new ValueEventListener() {
@@ -92,42 +94,42 @@ public class OwnerMenuTabViewDetails extends Fragment {
 //            }
 //        });
 
-        databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu").child(OwnerMenuTab.strMenuMain)
-                .child(OwnerMenuTab.strMenuMain).child(OwnerMenuTabView.strMenuItem).addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-//                strMenuItemImage = dataSnapshot.getValue().toString();
-                strMenuItemImage = getContext().getApplicationContext().toString();
-                Log.v("Frak1", strMenuItemImage );
-                strMenuItemName = dataSnapshot.getValue().toString();
-                Log.v("Frak2", strMenuItemName);
-
-                Picasso.with(getActivity()).load(OwnerMenuTabView.strMenuImage).into(imgView);
-                tvItemName.setText(strMenuItemName);
-
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+//        databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu").child(OwnerMenuTab.strMenuMain)
+//                .child(OwnerMenuTab.strMenuMain).child(OwnerMenuTabView.strMenuItem).addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//
+////                strMenuItemImage = dataSnapshot.getValue().toString();
+////                strMenuItemImage = getContext().getApplicationContext().toString();
+//                Log.v("Frak1", strMenuItemImage );
+//                strMenuItemName = dataSnapshot.getValue().toString();
+//                Log.v("Frak2", strMenuItemName);
+//
+////                Picasso.with(getActivity()).load(OwnerMenuTabView.strMenuImage).into(imgView);
+//                tvItemName.setText(strMenuItemName);
+//
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
     }
 
