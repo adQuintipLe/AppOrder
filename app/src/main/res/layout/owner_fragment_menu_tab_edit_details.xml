@@ -4,20 +4,27 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbars="vertical"
     android:id="@+id/llayoutTable">
 
-        <ImageButton
-            android:id="@+id/imgBtnEdt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true"
-            android:src="@drawable/ic_action_insert_photo"/>
+    <ImageView
+        android:id="@+id/imgInEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_action_insert_photo"/>
 
-   <ListView
-            android:id="@+id/yolo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+    <Button
+        android:id="@+id/btnUploadNewImg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload"/>
 
+    <EditText
+        android:id="@+id/getMenuPriceItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
 
 </LinearLayout>

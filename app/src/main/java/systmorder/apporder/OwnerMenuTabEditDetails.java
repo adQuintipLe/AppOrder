@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,10 +20,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -54,20 +58,16 @@ public class OwnerMenuTabEditDetails extends Fragment {
 
     private DatabaseReference databaseReference;
     private StorageReference storageReference;
-    public static Uri uriImg = null;
-    public static Uri downloadUrl = null;
     private FirebaseAuth firebaseAuth;
-
-    private ImageButton imgBtnEdt;
-    private ListView yolo;
-    private ArrayList<String> list = new ArrayList<>();
-    private ArrayAdapter<String> adapter;
     private ProgressDialog progressDialog;
+    private EditText getMenuPriceItem;
+    private ImageView imgInEdit;
+    private Button btnUploadNewImg;
 
     private static final int GALLERY_REQUEST = 1;
 
-    public static String strItemName = "";
-    public static String strItemImg = "";
+    public static Uri uriImg = null;
+    public static Uri downloadUrl = null;
 
     @Nullable
     @Override
@@ -83,7 +83,7 @@ public class OwnerMenuTabEditDetails extends Fragment {
         View v = getView();
 
         ActionBar mbar = ((AppCompatActivity)getActivity()).getSupportActionBar();
-        mbar.setTitle("testinh");
+        mbar.setTitle("Edit "+ OwnerMenuTabView.strMenuItem);
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -92,8 +92,14 @@ public class OwnerMenuTabEditDetails extends Fragment {
 
         progressDialog = new ProgressDialog(getActivity());
 
-        imgBtnEdt = (ImageButton) v.findViewById(R.id.imgBtnEdt);
-        imgBtnEdt.setOnClickListener(new View.OnClickListener() {
+        getMenuPriceItem = (EditText) v.findViewById(R.id.getMenuPriceItem);
+        getMenuPriceItem.setText(OwnerMenuTabView.strMenuPrice);
+
+        imgInEdit = (ImageView) v.findViewById(R.id.imgInEdit);
+        Picasso.with(getActivity()).load(OwnerMenuTabView.strMenuImage).into(imgInEdit);
+
+        btnUploadNewImg = (Button) v.findViewById(R.id.btnUploadNewImg);
+        btnUploadNewImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -102,42 +108,6 @@ public class OwnerMenuTabEditDetails extends Fragment {
                 startActivityForResult(galleryIntent, GALLERY_REQUEST);
             }
         });
-
-        yolo = (ListView) v.findViewById(R.id.yolo);
-        adapter = new ArrayAdapter<String>(getActivity(),R.layout.iwilluseordelete,list);
-        yolo.setAdapter(adapter);
-
-//        databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu").child(OwnerMenuTab.strMenuMain)
-//                .child(OwnerMenuTab.strMenuMain).child(OwnerMenuTabView.strMenuItem).addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//
-//                strItemName = dataSnapshot.getValue().toString();
-//                Log.v("Frak", strItemName);
-//                list.add(strItemName);
-//                adapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
     }
 
     @Override
@@ -147,7 +117,7 @@ public class OwnerMenuTabEditDetails extends Fragment {
         if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK){
 
             uriImg = data.getData();
-            imgBtnEdt.setImageURI(uriImg);
+            imgInEdit.setImageURI(uriImg);
         }
     }
 
@@ -177,10 +147,13 @@ public class OwnerMenuTabEditDetails extends Fragment {
 
     private void startSaving() {
 
-        progressDialog.setMessage("saving...");
-        progressDialog.show();
+//        final String strGetMenuNameItem = getMenuNameItem.getText().toString().trim();
+        final String strGetMenuPriceItem = getMenuPriceItem.getText().toString().trim();
 
         StorageReference filepath = storageReference.child("img").child(uriImg.getLastPathSegment());
+
+        progressDialog.setMessage("saving...");
+        progressDialog.show();
 
         filepath.putFile(uriImg).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -191,6 +164,7 @@ public class OwnerMenuTabEditDetails extends Fragment {
                         .child(OwnerMenuTab.strMenuMain).child(OwnerMenuTab.strMenuMain).child(OwnerMenuTabView.strMenuItem);
 
                 newSaving.child("menuImage").setValue(downloadUrl.toString());
+                newSaving.child("menuPrice").setValue(strGetMenuPriceItem);
 //                newSaving.child("menuImage").setValue(uriImg.getPath());
 
 //                Picasso.with(getActivity()).load(uriImg).into(imgBtnEdt);

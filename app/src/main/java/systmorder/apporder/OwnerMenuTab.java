@@ -42,6 +42,7 @@ public class OwnerMenuTab extends Fragment {
     private RecyclerView rvAllMenuCatogery;
 
     public static String strMenuMain = "";
+    public static String strImgMain = "";
 
     @Nullable
     @Override
@@ -90,6 +91,7 @@ public class OwnerMenuTab extends Fragment {
                     public void onClick(View view) {
 
                         strMenuMain = model.getMenuMain();
+                        strImgMain = model.getImgMain();
 
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                         OwnerMenuTabView fragOwnerMenuTabView = new OwnerMenuTabView();

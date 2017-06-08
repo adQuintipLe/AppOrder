@@ -14,8 +14,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +32,8 @@ import static android.app.Activity.RESULT_OK;
 
 public class OwnerMenuTabEditMain extends Fragment {
 
-    private ImageButton imgBtnMain;
+    private Button btnUploadMain;
+    private ImageView imgInMainEdit;
     private EditText edtMenuMain;
     private DatabaseReference databaseReference;
     private StorageReference storageReference;
@@ -62,8 +65,11 @@ public class OwnerMenuTabEditMain extends Fragment {
         edtMenuMain = (EditText) v.findViewById(R.id.edtMenuMain);
         edtMenuMain.setText(OwnerMenuTab.strMenuMain);
 
-        imgBtnMain = (ImageButton) v.findViewById(R.id.imgBtnMain);
-        imgBtnMain.setOnClickListener(new View.OnClickListener() {
+        imgInMainEdit = (ImageView) v.findViewById(R.id.imgInMainEdit);
+        Picasso.with(getActivity()).load(OwnerMenuTab.strImgMain).into(imgInMainEdit);
+
+        btnUploadMain = (Button) v.findViewById(R.id.btnUploadMain);
+        btnUploadMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -98,7 +104,7 @@ public class OwnerMenuTabEditMain extends Fragment {
         if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK){
 
             uriMainImg = data.getData();
-            imgBtnMain.setImageURI(uriMainImg);
+            imgInMainEdit.setImageURI(uriMainImg);
         }
     }
 
