@@ -38,6 +38,7 @@ public class AllLoginActivity extends AppCompatActivity {
     public static String strAllLoginID = "";
     public static String strUserType = "";
     public static String strAllRestrntID = "";
+    public static String strAllPassword = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -91,6 +92,7 @@ public class AllLoginActivity extends AppCompatActivity {
                             Log.v("strUserType", strUserType);
 
                             databaseReference.child(AdminUserTab.strUserId).child(strUserType);
+                            databaseReference.child("User").child(strAllLoginID).child("userPass").setValue(strAllPassword);
 
                             if (strUserType.equals("manager")){
                                 startActivity(new Intent(AllLoginActivity.this, OwnerMainActivity.class));
@@ -143,9 +145,9 @@ public class AllLoginActivity extends AppCompatActivity {
     private void signIn(){
 
         final String strUserEmail = edtEmail.getText().toString();
-        final String strUserPass = edtPsswrd.getText().toString();
+        strAllPassword = edtPsswrd.getText().toString();
 
-        if (TextUtils.isEmpty(strUserEmail) && TextUtils.isEmpty(strUserPass)){
+        if (TextUtils.isEmpty(strUserEmail) && TextUtils.isEmpty(strAllPassword)){
 
             Toast.makeText(AllLoginActivity.this, "Both fields are empty", Toast.LENGTH_SHORT).show();
             return;
@@ -155,7 +157,7 @@ public class AllLoginActivity extends AppCompatActivity {
             Toast.makeText(AllLoginActivity.this, "please enter your email address", Toast.LENGTH_SHORT).show();
             return;
 
-        } else if (TextUtils.isEmpty(strUserPass)){
+        } else if (TextUtils.isEmpty(strAllPassword)){
 
             Toast.makeText(AllLoginActivity.this, "please enter your password", Toast.LENGTH_SHORT).show();
             return;
@@ -164,12 +166,12 @@ public class AllLoginActivity extends AppCompatActivity {
         progressDialog.setMessage("Login...");
         progressDialog.show();
 
-        firebaseAuth.signInWithEmailAndPassword(strUserEmail, strUserPass).addOnCompleteListener
+        firebaseAuth.signInWithEmailAndPassword(strUserEmail, strAllPassword).addOnCompleteListener
                 (AllLoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()){
-                            if (strUserPass.length() < 6){
+                            if (strAllPassword.length() < 6){
                                 progressDialog.dismiss();
                                 edtPsswrd.setError("Password too short, enter minimum 6 characters");
                             } else {
