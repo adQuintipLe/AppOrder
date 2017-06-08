@@ -1,5 +1,6 @@
 package systmorder.apporder;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -128,6 +130,38 @@ public class OwnerMenuTabEditMain extends Fragment {
             transaction.replace(R.id.owner_activity_main, fragOwnerMenuTab1);
             transaction.addToBackStack(null);
             transaction.commit();
+
+        } else if (id == R.id.deleteMenuMain){
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    getActivity());
+
+            alertDialogBuilder.setMessage("Delete "+ OwnerMenuTab.strMenuMain +" ?")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu").child(OwnerMenuTab.strMenuMain).removeValue();
+
+                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            OwnerMenuTab fragOwnerMenuTab2 = new OwnerMenuTab();
+                            transaction.replace(R.id.owner_activity_main, fragOwnerMenuTab2);
+                            transaction.addToBackStack(null);
+                            transaction.commit();
+
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+
+                        }
+                    });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+
         }
 
         return super.onOptionsItemSelected(item);

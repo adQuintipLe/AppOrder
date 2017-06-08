@@ -3,10 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/deleteMenuMain"
+        android:icon="@drawable/ic_action_delete"
+        android:title="deleteMain"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/saveMenuMain"
         android:icon="@drawable/ic_action_save"
-        android:title="menuMain"
-        app:showAsAction="always"
-        />
+        android:title="saveMain"
+        app:showAsAction="always" />
 
 </menu>
