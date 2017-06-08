@@ -1,5 +1,6 @@
 package systmorder.apporder;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.opengl.GLException;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -29,6 +31,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 
 public class OwnerMenuTab extends Fragment {
@@ -81,6 +84,7 @@ public class OwnerMenuTab extends Fragment {
             protected void populateViewHolder(MenuViewHolder viewHolder, final MenuList model, int position) {
 
                 viewHolder.setMenuMain(model.getMenuMain());
+                viewHolder.setImageMain(getContext().getApplicationContext(),model.getImgMain());
                 viewHolder.fView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -112,6 +116,11 @@ public class OwnerMenuTab extends Fragment {
         public void setMenuMain(String menuMain) {
             TextView txtAllMenuCategory = (TextView)fView.findViewById(R.id.txtAllMenuCategory);
             txtAllMenuCategory.setText(menuMain);
+        }
+
+        public void setImageMain(Context applicationContext, String imgMain) {
+            ImageView asdf = (ImageView) fView.findViewById(R.id.asdf);
+            Picasso.with(applicationContext).load(imgMain).into(asdf);
         }
     }
 

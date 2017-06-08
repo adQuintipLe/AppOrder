@@ -2,10 +2,7 @@ package systmorder.apporder;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.DialogPreference;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -148,7 +145,7 @@ public class OwnerMenuTabView extends Fragment {
         if (id == R.id.modifyMenuCatogery){
 
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            DeleteLater fragDeleteLater = new DeleteLater();
+            OwnerMenuTabEditMain fragDeleteLater = new OwnerMenuTabEditMain();
             transaction.replace(R.id.owner_activity_main, fragDeleteLater);
             transaction.addToBackStack(null);
             transaction.commit();

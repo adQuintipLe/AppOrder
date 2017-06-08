@@ -10,16 +10,18 @@ public class MenuList {
     private String menuItem;
     private String menuPrice;
     private String menuImage;
+    private String imgMain;
 
     MenuList(){
 
     }
 
-    public MenuList(String menuMain, String menuItem, String menuPrice, String menuImage) {
+    public MenuList(String menuMain, String menuItem, String menuPrice, String menuImage, String imgMain) {
         this.menuMain = menuMain;
         this.menuItem = menuItem;
         this.menuPrice = menuPrice;
         this.menuImage = menuImage;
+        this.imgMain = imgMain;
     }
 
     public String getMenuMain() {
@@ -52,5 +54,13 @@ public class MenuList {
 
     public void setMenuImage(String menuImage) {
         this.menuImage = menuImage;
+    }
+
+    public String getImgMain() {
+        return imgMain;
+    }
+
+    public void setImgMain(String imgMain) {
+        this.imgMain = imgMain;
     }
 }
