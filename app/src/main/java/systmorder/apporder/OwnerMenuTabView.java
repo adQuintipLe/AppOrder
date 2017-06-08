@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -171,9 +172,16 @@ public class OwnerMenuTabView extends Fragment {
                                 public void onClick(DialogInterface dialog, int id  ) {
                                     strMenuItem = userInputMenu.getText().toString();
 
-                                    databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu").child(OwnerMenuTab.strMenuMain)
-                                            .child(OwnerMenuTab.strMenuMain).child(strMenuItem).child("menuItem").setValue(strMenuItem);
-                                    Toast.makeText(getActivity(),strMenuItem, Toast.LENGTH_LONG).show();
+                                    if (TextUtils.isEmpty(strMenuItem)){
+                                        Toast.makeText(getActivity(), "Please enter your menu name", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    } else {
+
+                                        databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu").child(OwnerMenuTab.strMenuMain)
+                                                .child(OwnerMenuTab.strMenuMain).child(strMenuItem).child("menuItem").setValue(strMenuItem);
+                                        Toast.makeText(getActivity(),strMenuItem, Toast.LENGTH_LONG).show();
+                                    }
+
                                 }
                             })
                     .setNegativeButton("Cancel",

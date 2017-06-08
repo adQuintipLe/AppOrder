@@ -1,12 +1,14 @@
 package systmorder.apporder;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -151,6 +153,38 @@ public class OwnerMenuTabViewDetails extends Fragment {
             transaction.replace(R.id.owner_activity_main, fragOwnerMenuTabEditDetails);
             transaction.addToBackStack(null);
             transaction.commit();
+
+        } else if (id == R.id.deleteMenuDetails){
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    getActivity());
+
+            alertDialogBuilder.setMessage("Delete "+ OwnerMenuTabView.strMenuItem +" ?")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu").child(OwnerMenuTab.strMenuMain)
+                                    .child(OwnerMenuTab.strMenuMain).child(OwnerMenuTabView.strMenuItem).removeValue();
+
+                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            OwnerMenuTabView fragOwnerMenuTabView2 = new OwnerMenuTabView();
+                            transaction.replace(R.id.owner_activity_main, fragOwnerMenuTabView2);
+                            transaction.addToBackStack(null);
+                            transaction.commit();
+
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+
+                        }
+                    });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
 
         }
         return super.onOptionsItemSelected(item);

@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -153,10 +154,17 @@ public class OwnerTableTab extends Fragment {
 
                                     strTableNo = userInputTbl.getText().toString();
 //                                    strresID = "table 1";
-                                    databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblTable").child(strTableNo).child("tableNo").setValue(strTableNo);
+                                    if (TextUtils.isEmpty(strGetTableNo)){
 
-                                    Log.v("hello", AllLoginActivity.strAllRestrntID);
-                                    Toast.makeText(getActivity(), "Table added", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), "Please enter table number", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    } else {
+
+                                        databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblTable").child(strTableNo).child("tableNo").setValue(strTableNo);
+
+                                        Log.v("hello", AllLoginActivity.strAllRestrntID);
+                                        Toast.makeText(getActivity(), "Table added", Toast.LENGTH_SHORT).show();
+                                    }
 
                                 }
                             })

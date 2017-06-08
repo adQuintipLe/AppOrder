@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/deleteMenuDetails"
+        android:icon="@drawable/ic_action_delete"
+        android:title="deleteCatogery"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/modifyMenuCatogery"
         android:icon="@drawable/ic_action_modify"
         android:title="menuCatogery"

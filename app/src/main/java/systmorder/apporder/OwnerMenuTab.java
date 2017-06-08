@@ -13,6 +13,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -158,9 +159,17 @@ public class OwnerMenuTab extends Fragment {
                                 public void onClick(DialogInterface dialog, int id  ) {
                                     strMenuMain = userInput.getText().toString();
 
-                                    databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu").child(strMenuMain).child("menuMain").setValue(strMenuMain);
+                                    if (TextUtils.isEmpty(strMenuMain)){
 
-                                    Toast.makeText(getActivity(),strMenuMain, Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(), "Please enter your menu category", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    } else {
+
+                                        databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu").child(strMenuMain).child("menuMain").setValue(strMenuMain);
+
+                                        Toast.makeText(getActivity(),strMenuMain, Toast.LENGTH_LONG).show();
+                                    }
+
                                 }
                             })
                     .setNegativeButton("Cancel",
