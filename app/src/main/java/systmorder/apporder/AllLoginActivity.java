@@ -28,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 public class AllLoginActivity extends AppCompatActivity {
 
     private EditText edtEmail, edtPsswrd;
-    private TextView btnReg;
+    private TextView btnReg, btnForgetPass;
     private Button btnLogin;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
@@ -50,6 +50,7 @@ public class AllLoginActivity extends AppCompatActivity {
         edtEmail = (EditText)findViewById(R.id.edtEmail);
         edtPsswrd = (EditText)findViewById(R.id.edtPsswrd);
         btnLogin = (Button)findViewById(R.id.btnLogin);
+        btnForgetPass = (TextView) findViewById(R.id.btnForgetPass);
         btnReg = (TextView) findViewById(R.id.btnReg);
         progressDialog = new ProgressDialog(this);
 
@@ -123,6 +124,12 @@ public class AllLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(AllLoginActivity.this, AllRegisterActivity.class));
+            }
+        });
+        btnForgetPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AllLoginActivity.this, AllForgotPasswordActivity.class));
             }
         });
     }

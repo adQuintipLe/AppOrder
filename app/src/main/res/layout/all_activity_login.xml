@@ -60,10 +60,23 @@
         android:onClick="loginStaff"/>
 
     <TextView
+        android:id="@+id/btnForgetPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Forgot Your Password?"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"/>
+
+    <TextView
         android:id="@+id/btnReg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="register"
+        android:text="No account yet? Create One!"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
         android:textAlignment="center"/>
 
 </LinearLayout>
