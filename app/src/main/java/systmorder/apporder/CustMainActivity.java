@@ -39,44 +39,35 @@ public class CustMainActivity extends AppCompatActivity implements OnMenuTabClic
         CustbtmBar.setItemsFromMenu(R.menu.cust_tab, this);
     }
 
-
-    // create an action bar button
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.test, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
-    // handle button activities
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.cart) {
-//            startActivity(new Intent(CustMainActivity.this, OwnerChooseActivity.class));
 
-            // get prompts.xml view
             LayoutInflater li = LayoutInflater.from(context);
             View promptsView = li.inflate(R.layout.testcust, null);
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                     context);
 
-            // set prompts.xml to alertdialog builder
             alertDialogBuilder.setView(promptsView);
 
             final EditText userInput = (EditText) promptsView
                     .findViewById(R.id.editTextDialogUserInput);
 
-            // set dialog message
             alertDialogBuilder
                     .setCancelable(false)
                     .setPositiveButton("OK",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
-                                    // get user input and set it to result
-                                    // edit text
-//                                    result.setText(userInput.getText());
+
                                 }
                             })
                     .setNegativeButton("Cancel",
@@ -86,10 +77,8 @@ public class CustMainActivity extends AppCompatActivity implements OnMenuTabClic
                                 }
                             });
 
-            // create alert dialog
             AlertDialog alertDialog = alertDialogBuilder.create();
 
-            // show it
             alertDialog.show();
 
         }

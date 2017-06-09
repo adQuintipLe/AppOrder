@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--support for app bar(ActionBar)-->
     <!--<include-->
         <!--layout="@layout/owner_activity_app_bar"-->
         <!--android:layout_width="match_parent"-->
@@ -12,11 +13,38 @@
         <!--android:layout_toRightOf="@+id/textView"-->
         <!--android:layout_toEndOf="@+id/textView" />-->
 
-    <Button
-        android:id="@+id/btnOwnerGoToOwner"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Owner"/>
+        android:id="@+id/clickToOwner"
+        android:layout_marginTop="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_action_image"/>
+
+            <TextView
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="100dp"
+                android:text="unknown"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+        <!--<Button-->
+            <!--android:id="@+id/btnOwnerGoToOwner"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Owner"/>-->
 
     <Button
         android:id="@+id/btnOwnerGoToStaff"
@@ -30,5 +58,6 @@
         <!--android:layout_height="wrap_content"-->
         <!--android:text="Customer"/>-->
 
+    <!--<how do i seperate the cardview in the same fragment/activity>-->
 
 </LinearLayout>
