@@ -64,8 +64,8 @@ public class OwnerMenuTabEditMain extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("tblRstrn");
         storageReference = FirebaseStorage.getInstance().getReference();
 
-        edtMenuMain = (EditText) v.findViewById(R.id.edtMenuMain);
-        edtMenuMain.setText(OwnerMenuTab.strMenuMain);
+//        edtMenuMain = (EditText) v.findViewById(R.id.edtMenuMain);
+//        edtMenuMain.setText(OwnerMenuTab.strMenuMain);
 
         imgInMainEdit = (ImageView) v.findViewById(R.id.imgInMainEdit);
         Picasso.with(getActivity()).load(OwnerMenuTab.strImgMain).into(imgInMainEdit);
