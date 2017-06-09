@@ -20,7 +20,7 @@ public class OwnerChooseActivity extends AppCompatActivity {
 
         btnOwnerGoToOwner = (Button) findViewById(R.id.btnOwnerGoToOwner);
         btnOwnerGoToStaff = (Button) findViewById(R.id.btnOwnerGoToStaff);
-        btnOwnerGoToCust = (Button) findViewById(R.id.btnOwnerGoToCust);
+//        btnOwnerGoToCust = (Button) findViewById(R.id.btnOwnerGoToCust);
 
         btnOwnerGoToOwner.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,18 +33,19 @@ public class OwnerChooseActivity extends AppCompatActivity {
         btnOwnerGoToStaff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-            }
-        });
-
-        btnOwnerGoToCust.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
                 startActivity(new Intent(OwnerChooseActivity.this, CustMainActivity.class));
                 finish();
-
             }
         });
+
+//        btnOwnerGoToCust.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                startActivity(new Intent(OwnerChooseActivity.this, CustMainActivity.class));
+//                finish();
+//
+//            }
+//        });
     }
 }

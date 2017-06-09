@@ -46,7 +46,7 @@ public class OwnerMainActivity extends AppCompatActivity implements OnMenuTabCli
             transaction.replace(R.id.owner_activity_main, fragOwnerMenuTab);
             transaction.commit();
 
-        } else if (menuItemId == R.id.btmBarUser){
+        } else if (menuItemId == R.id.btmBarOrders){
 
             OwnerUserTab fragOwnerUserTab = new OwnerUserTab();
             transaction.replace(R.id.owner_activity_main, fragOwnerUserTab);

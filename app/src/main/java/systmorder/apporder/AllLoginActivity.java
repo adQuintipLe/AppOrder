@@ -95,7 +95,7 @@ public class AllLoginActivity extends AppCompatActivity {
                             databaseReference.child("User").child(strAllLoginID).child("userPass").setValue(strAllPassword);
 
                             if (strUserType.equals("manager")){
-                                startActivity(new Intent(AllLoginActivity.this, OwnerMainActivity.class));
+                                startActivity(new Intent(AllLoginActivity.this, OwnerChooseActivity.class));
                             } else if (strUserType.equals("staff")){
                                 startActivity(new Intent(AllLoginActivity.this, StaffChooseActivity.class));
                             } else if (strUserType.equals("customer")){

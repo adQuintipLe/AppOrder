@@ -22,13 +22,13 @@
         android:id="@+id/btnOwnerGoToStaff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Staff"/>
+        android:text="SCAN QRCODE"/>
 
-    <Button
-        android:id="@+id/btnOwnerGoToCust"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Customer"/>
+    <!--<Button-->
+        <!--android:id="@+id/btnOwnerGoToCust"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Customer"/>-->
 
 
 </LinearLayout>
