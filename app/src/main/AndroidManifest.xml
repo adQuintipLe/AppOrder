@@ -2,16 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="systmorder.apporder">
 
-    <supports-screens android:smallScreens="true"
-    android:normalScreens="true"
-    android:largeScreens="true"
-    android:xlargeScreens="true"
-    android:anyDensity="true" />
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -19,9 +19,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminLoginActivity">
-
-        </activity>
+        <activity android:name=".AdminLoginActivity"></activity>
         <activity android:name=".AllLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,18 +27,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AllForgotPasswordActivity"></activity>
-        <activity android:name=".AllRegisterActivity"></activity>
-        <activity android:name=".AdminMainActivity"></activity>
-        <activity android:name=".OwnerChooseActivity"></activity>
-        <activity android:name=".OwnerMainActivity"></activity>
-        <activity android:name=".StaffChooseActivity"></activity>
-        <activity android:name=".StaffMainActivity"></activity>
-        <activity android:name=".CustMainActivity"></activity>
+        <activity android:name=".AllForgotPasswordActivity" />
+        <activity android:name=".AllRegisterActivity" />
+        <activity android:name=".AdminMainActivity" />
+        <activity android:name=".OwnerChooseActivity" />
+        <activity android:name=".OwnerMainActivity" />
+        <activity android:name=".StaffChooseActivity" />
+        <activity android:name=".StaffMainActivity" />
+        <activity android:name=".CustMainActivity" />
 
-        <!--<activity android:name=".AdminTest">-->
+        <!-- <activity android:name=".AdminTest"> -->
 
-        <!--</activity>-->
+
+        <!-- </activity> -->
     </application>
 
 </manifest>

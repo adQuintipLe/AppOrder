@@ -4,17 +4,22 @@
     <item
         android:id="@+id/btmBarDashboard"
         android:icon="@drawable/ic_action_dashboard"
-        android:title="Tables" />
+        android:title="Table" />
 
     <item
         android:id="@+id/btmBarDetails"
         android:icon="@drawable/ic_action_menu"
-        android:title="Menus" />
+        android:title="Menu" />
 
     <item
         android:id="@+id/btmBarOrders"
         android:icon="@drawable/ic_action_list"
-        android:title="Orders" />
+        android:title="Order" />
+
+    <item
+        android:id="@+id/dummy"
+        android:icon="@drawable/ic_action_dialpad"
+        android:title="Setting" />
 
     <item
         android:id="@+id/btmBarSetting"
