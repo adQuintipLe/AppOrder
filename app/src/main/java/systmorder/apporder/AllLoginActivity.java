@@ -99,7 +99,7 @@ public class AllLoginActivity extends AppCompatActivity {
                             } else if (strUserType.equals("staff")){
                                 startActivity(new Intent(AllLoginActivity.this, StaffChooseActivity.class));
                             } else if (strUserType.equals("customer")){
-                                startActivity(new Intent(AllLoginActivity.this, CustMainActivity.class));
+                                startActivity(new Intent(AllLoginActivity.this, CustChooseRestaurant.class));
                             }
                             firebaseAuth.removeAuthStateListener(firebaseAuthListener);
                             finish();

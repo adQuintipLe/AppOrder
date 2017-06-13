@@ -126,7 +126,7 @@ public class AllRegisterActivity extends AppCompatActivity {
                             dataMap.put("userRestaurantID", strRestId);
                             dataMap.put("userRestaurantName", strRestName);
 
-                            startActivity(new Intent(AllRegisterActivity.this, AllLoginActivity.class));
+//                            startActivity(new Intent(AllRegisterActivity.this, AllLoginActivity.class));
                             finish();
 
                             databaseReference.child("User").child(strUserId).setValue(dataMap);

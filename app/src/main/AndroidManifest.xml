@@ -21,7 +21,11 @@
         android:theme="@style/AppTheme">
         <activity android:name=".AdminLoginActivity"></activity>
         <activity android:name=".AllLoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".AllForgotPasswordActivity" />
         <activity android:name=".AllRegisterActivity" />
@@ -31,13 +35,10 @@
         <activity android:name=".StaffChooseActivity" />
         <activity android:name=".StaffMainActivity" />
         <activity android:name=".CustMainActivity" />
+        <activity android:name=".CustChooseRestaurant"/>
 
          <activity android:name=".AdminTest">
-             <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
 
-                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
 
          </activity>
     </application>
