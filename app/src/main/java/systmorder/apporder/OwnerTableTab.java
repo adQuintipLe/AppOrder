@@ -154,12 +154,13 @@ public class OwnerTableTab extends Fragment {
 
                                     strTableNo = userInputTbl.getText().toString();
 //                                    strresID = "table 1";
-                                    if (TextUtils.isEmpty(strGetTableNo)){
+                                    if (TextUtils.isEmpty(strTableNo)){
 
                                         Toast.makeText(getActivity(), "Please enter table number", Toast.LENGTH_SHORT).show();
                                         return;
                                     } else {
 
+                                        databaseReference.child(AllLoginActivity.strAllRestrntID).child("RestrnID").setValue(AllLoginActivity.strAllRestrntID);
                                         databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblTable").child(strTableNo).child("tableNo").setValue(strTableNo);
 
                                         Log.v("hello", AllLoginActivity.strAllRestrntID);

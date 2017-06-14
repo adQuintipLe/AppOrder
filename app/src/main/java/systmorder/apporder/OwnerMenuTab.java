@@ -165,6 +165,7 @@ public class OwnerMenuTab extends Fragment {
                                         return;
                                     } else {
 
+                                        databaseReference.child(AllLoginActivity.strAllRestrntID).child("RestrnID").setValue(AllLoginActivity.strAllRestrntID);
                                         databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblMenu").child(strMenuMain).child("menuMain").setValue(strMenuMain);
 
                                         Toast.makeText(getActivity(),strMenuMain, Toast.LENGTH_LONG).show();
