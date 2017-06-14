@@ -54,7 +54,9 @@ public class CustChooseRestaurant extends AppCompatActivity {
                 intentIntegrator.setPrompt("Scan");
                 intentIntegrator.setCameraId(0);
                 intentIntegrator.setBeepEnabled(false);
-                intentIntegrator.setBarcodeImageEnabled(false);
+                intentIntegrator.setBarcodeImageEnabled(true);
+                intentIntegrator.setCaptureActivity(AnyOrientationCaptureActivity.class);
+                intentIntegrator.setOrientationLocked(false);
                 intentIntegrator.initiateScan();
             }
         });

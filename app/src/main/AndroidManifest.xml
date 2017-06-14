@@ -36,6 +36,11 @@
         <activity android:name=".StaffMainActivity" />
         <activity android:name=".CustMainActivity" />
         <activity android:name=".CustChooseRestaurant"/>
+        <activity android:name=".AnyOrientationCaptureActivity"
+            android:screenOrientation="fullSensor"
+            android:stateNotNeeded="true"
+            android:theme="@style/zxing_CaptureTheme"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
 
          <activity android:name=".AdminTest">
 
