@@ -106,6 +106,7 @@ public class CustChooseRestaurant extends AppCompatActivity {
                 Log.d("strqrcode",intentResult.getContents());
                 Log.v("str1", intentResult.getContents());
                 startActivity(new Intent(this, CustMainActivity.class));
+                finish();
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

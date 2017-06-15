@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,6 +32,9 @@ public class CustHomeTab extends Fragment {
 
     private DatabaseReference databaseReference;
     private RecyclerView rvCustMenuCatogery;
+
+    public static String strCustMenuMain = "";
+    public static String strCustImgMain = "";
 
     @Nullable
     @Override
@@ -70,9 +74,22 @@ public class CustHomeTab extends Fragment {
             protected void populateViewHolder(MenuCustViewHolder viewHolder, final MenuList model, int position) {
 
                 viewHolder.setCustMenuMain(model.getMenuMain());
-                viewHolder.setCustMenuImg(getContext().getApplicationContext(),model.getMenuImage());
+                viewHolder.setCustMenuImg(getContext().getApplicationContext(),model.getImgMain());
+                viewHolder.fView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
 
+                        strCustMenuMain = model.getMenuMain();
+                        strCustImgMain = model.getMenuImage();
 
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        CustHomeTabMenu fragCustHomeTabMenu = new CustHomeTabMenu();
+                        transaction.replace(R.id.cust_activity_main, fragCustHomeTabMenu);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+
+                    }
+                });
             }
         };
         rvCustMenuCatogery.setAdapter(firebaseRecyclerAdapter);
