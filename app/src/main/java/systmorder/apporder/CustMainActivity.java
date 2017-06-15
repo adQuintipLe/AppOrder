@@ -51,35 +51,7 @@ public class CustMainActivity extends AppCompatActivity implements OnMenuTabClic
 
         if (id == R.id.cart) {
 
-            LayoutInflater li = LayoutInflater.from(context);
-            View promptsView = li.inflate(R.layout.testcust, null);
-
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                    context);
-
-            alertDialogBuilder.setView(promptsView);
-
-            final EditText userInput = (EditText) promptsView
-                    .findViewById(R.id.editTextDialogUserInput);
-
-            alertDialogBuilder
-                    .setCancelable(false)
-                    .setPositiveButton("OK",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,int id) {
-
-                                }
-                            })
-                    .setNegativeButton("Cancel",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,int id) {
-                                    dialog.cancel();
-                                }
-                            });
-
-            AlertDialog alertDialog = alertDialogBuilder.create();
-
-            alertDialog.show();
+            startActivity(new Intent(CustMainActivity.this, CustOrderListActivity.class));
 
         }
         return super.onOptionsItemSelected(item);

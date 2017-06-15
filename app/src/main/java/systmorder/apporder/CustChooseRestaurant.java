@@ -33,6 +33,8 @@ public class CustChooseRestaurant extends AppCompatActivity {
     private Button clickToCustomer;
 
     public static IntentResult intentResult = null;
+    public static String qrCodeResId = "";
+    public static String qrCodeTableNo = "";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,74 +67,27 @@ public class CustChooseRestaurant extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-//        intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data).toString();
         intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-
-//        databaseReference.child(intentResult);
 
         Log.wtf("testBeta", intentResult.getContents());
 
-//                if (!intentResult.equals(null)){
-//            if (intentResult.equals(null)){
-//                Toast.makeText(this, "You cancelled scanning", Toast.LENGTH_SHORT).show();
-//            } else {
-//                Toast.makeText(this, intentResult, Toast.LENGTH_SHORT).show();
-//                Log.d("strqrcode",intentResult);
-//                Log.v("str1", intentResult);
-//
-//                startActivity(new Intent(this, CustMainActivity.class));
-//            }
-//        if (intentResult != null){
-//            if (intentResult.getContents() == null){
-//                Toast.makeText(this, "You cancelled scanning", Toast.LENGTH_SHORT).show();
-//            } else {
-//                try {
-//                    JSONObject obj = new JSONObject(intentResult.getContents());
-//                } catch (JSONException e){
-//                    e.printStackTrace();
-//                    Toast.makeText(this, intentResult.getContents(), Toast.LENGTH_SHORT).show();
-//                    Log.d("strqrcode",intentResult.getContents());
-//                    Log.v("str1", intentResult.getContents());
-//                }
-//            }
-//        } else {
-//            super.onActivityResult(requestCode, resultCode, data);
-//        }
+        qrCodeResId = intentResult.getContents().substring(0,7);
+        qrCodeTableNo = intentResult.getContents().substring(7,14);
+
+        Log.wtf("qrCodeResId", qrCodeResId);
+        Log.wtf("qrCodeResId", qrCodeTableNo);
+
         if (intentResult != null){
             if (intentResult.getContents() == null){
                 Toast.makeText(this, "You cancelled scanning", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, intentResult.getContents(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, qrCodeResId + " with " + qrCodeTableNo, Toast.LENGTH_SHORT).show();
                 Log.d("strqrcode",intentResult.getContents());
-                Log.v("str1", intentResult.getContents());
                 startActivity(new Intent(this, CustMainActivity.class));
                 finish();
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
-//        if (intentResult != null){
-//            if (intentResult.toString() == null){
-//                Toast.makeText(this, "You cancelled scanning", Toast.LENGTH_SHORT).show();
-//            } else {
-//                Toast.makeText(this, intentResult.toString(), Toast.LENGTH_SHORT).show();
-//                Log.d("strqrcode",intentResult.toString());
-//                Log.v("str1", intentResult.toString());
-//            }
-//        }
-//        if (!intentResult.equals(null)){
-//            if (intentResult.equals(null)){
-//                Toast.makeText(this, "You cancelled scanning", Toast.LENGTH_SHORT).show();
-//            } else if (!intentResult.equals(CustHomeTab.getRestrnID)){
-//                Toast.makeText(this, "doestnt exit", Toast.LENGTH_SHORT).show();
-//                Log.wtf("mmm1", intentResult);
-//                Log.wtf("nnn1", CustHomeTab.getRestrnID);
-//            } else {
-//                Toast.makeText(this, "succesfully", Toast.LENGTH_SHORT).show();
-//                Log.wtf("mmm", intentResult);
-//                Log.wtf("nnn", CustHomeTab.getRestrnID);
-//                startActivity(new Intent(this, CustMainActivity.class));
-//            }
-//        }
 
     }
 

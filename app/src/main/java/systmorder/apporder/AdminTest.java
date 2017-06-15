@@ -2,6 +2,7 @@ package systmorder.apporder;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,9 @@ import com.google.zxing.integration.android.IntentResult;
 public class AdminTest extends AppCompatActivity {
 
     private Button scanQR;
+
+    public static String s = "";
+    public static String s1 = "";
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -53,6 +57,16 @@ public class AdminTest extends AppCompatActivity {
 
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
+
+        s = result.getContents().substring(0,7);
+        s1 = result.getContents().substring(7,14);
+//        s.substring(6);
+//                s1 = result.getContents();
+//                s1.substring(7,13);
+
+        Log.wtf("s",s);
+        Log.wtf("s1",s1);
+
         if (result != null){
             if (result.getContents() == null){
                 Toast.makeText(this, "You cancelled scanning", Toast.LENGTH_SHORT).show();
@@ -61,10 +75,48 @@ public class AdminTest extends AppCompatActivity {
                 Log.d("strqrcode",result.getContents());
                 Log.v("str1", result.getContents());
                 startActivity(new Intent(AdminTest.this, AllLoginActivity.class));
+
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
         Log.wtf("str",result.getContents());
+
+//        if (result != null){
+//            if (result == null){
+//                Toast.makeText(this, "You cancelled scanning", Toast.LENGTH_SHORT).show();
+//            } else {
+//                Toast.makeText(this, "susses", Toast.LENGTH_SHORT).show();
+////                Log.d("strqrcode",result.getFormatName());
+////                Log.v("str1", result.getFormatName());
+////                startActivity(new Intent(AdminTest.this, AllLoginActivity.class));
+//                String getContent = result.getContents();
+//                String getContent1 = result.getFormatName();
+//                String getContent2 = result.toString();
+//
+//                Log.d("strqrcode", getContent);
+//                Log.w("strqrcode1", getContent1);
+//                Log.w("strqrcode2", getContent2);
+//
+//                String dataUri = result.getContents();
+//                String[] dataElement = myData.breakString(dataUri);
+//
+//                Intent i = new Intent(Intent.ACTION_VIEW);
+//                i.putExtra("test1", dataElement[1]);
+//                i.putExtra("test2", dataElement[2]);
+//                i.setData(Uri.parse("SMSTO:" + dataElement[1]));
+//                startActivity(i);
+//            }
+//        }
+//        super.onActivityResult(requestCode, resultCode, data);
+//        Log.wtf("str",result.getFormatName());
+//    }
+//
+//    public static class myData{
+//        public static String[] breakString(String s){
+//
+//            String[] dataElement = s.split(":");
+//            return dataElement;
+//        }
     }
 }
 

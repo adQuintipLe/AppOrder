@@ -64,7 +64,7 @@ public class CustHomeTabMenu extends Fragment {
                 MenuList.class,
                 R.layout.cust_fragment_home_tab_menurow,
                 MenuViewCustViewHolder.class,
-                databaseReference.child(CustChooseRestaurant.intentResult.getContents()).child("tblMenu").child(CustHomeTab.strCustMenuMain)
+                databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblMenu").child(CustHomeTab.strCustMenuMain)
                         .child(CustHomeTab.strCustMenuMain)
         ) {
             @Override
