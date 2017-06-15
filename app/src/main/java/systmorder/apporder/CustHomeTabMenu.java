@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,6 +28,10 @@ public class CustHomeTabMenu extends Fragment {
 
     private DatabaseReference databaseReference;
     private RecyclerView rvCustMenu;
+
+    public static String strCustMenuItem = "";
+    public static String strCustMenuPrice = "";
+    public static String strCustMenuImage = "";
 
     @Nullable
     @Override
@@ -68,6 +73,21 @@ public class CustHomeTabMenu extends Fragment {
                 viewHolder.setCustMenuItem(model.getMenuItem());
                 viewHolder.setCustMenuPrice(model.getMenuPrice());
                 viewHolder.setCustMenuImage(getContext().getApplicationContext(), model.getMenuImage());
+                viewHolder.fView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        strCustMenuItem = model.getMenuItem();
+                        strCustMenuPrice = model.getMenuPrice();
+                        strCustMenuImage = model.getMenuImage();
+
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        CustHomeTabMenuAdd fragCustHomeTabMenuAdd = new CustHomeTabMenuAdd();
+                        transaction.replace(R.id.cust_activity_main, fragCustHomeTabMenuAdd);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                    }
+                });
 
             }
         };

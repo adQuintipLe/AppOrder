@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/llayoutTable">
+
+    <ImageView
+        android:id="@+id/imgCustView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_action_insert_photo"/>
+
+    <TextView
+        android:id="@+id/tvCustMenuItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Menu Item"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/tvCustMenuPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Price"
+        android:textSize="15dp"
+        android:textColor="@color/successColorDark"
+        android:layout_marginTop="5dp"/>
+
+    <Button
+        android:id="@+id/customizeCustOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Customize Order"
+        android:textColor="@color/white"
+        android:background="@color/successColor"
+        android:layout_marginTop="5dp"/>
+
+    <Button
+        android:id="@+id/addCustOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ADD"
+        android:textColor="@color/white"
+        android:background="@color/successColor"
+        android:layout_marginTop="5dp"/>
+
+</LinearLayout>

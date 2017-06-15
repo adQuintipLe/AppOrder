@@ -7,4 +7,8 @@
     <color name="infoColorDark">#0099CC</color>
     <color name="warningColor">#ffbb33</color>
     <color name="warningColorDark">#FF8800</color>
+    <color name="successColor">#00C851</color>
+    <color name="successColorDark">#007E33</color>
+    <color name="dangerColor">#ff4444</color>
+    <color name="dangerColorDark">#CC0000</color>
 </resources>
