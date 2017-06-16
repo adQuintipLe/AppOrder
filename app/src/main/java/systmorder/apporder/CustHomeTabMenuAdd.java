@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -98,6 +100,22 @@ public class CustHomeTabMenuAdd extends Fragment {
         addCustOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                DatabaseReference dbOrder = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder")
+                        .child(CustChooseRestaurant.qrCodeTableNo);
+                dbOrder.child("tblNo").setValue(CustChooseRestaurant.qrCodeTableNo);
+
+                Log.d("test1", CustChooseRestaurant.qrCodeTableNo);
+
+                DatabaseReference dbOrderMenu = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder")
+                        .child(CustChooseRestaurant.qrCodeTableNo).child("OrderMenu").child(CustHomeTabMenu.strCustMenuItem);
+                dbOrderMenu.child("menuName").setValue(CustHomeTabMenu.strCustMenuItem);
+                dbOrderMenu.child("menuPrice").setValue(CustHomeTabMenu.strCustMenuPrice);
+
+                Log.d("test2", CustHomeTabMenu.strCustMenuItem);
+                Log.d("test3", CustHomeTabMenu.strCustMenuPrice);
+
+                Toast.makeText(getActivity(), "item added", Toast.LENGTH_SHORT).show();
 
             }
         });

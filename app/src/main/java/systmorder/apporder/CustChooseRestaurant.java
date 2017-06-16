@@ -71,16 +71,16 @@ public class CustChooseRestaurant extends AppCompatActivity {
 
         Log.wtf("testBeta", intentResult.getContents());
 
-        qrCodeResId = intentResult.getContents().substring(0,7);
-        qrCodeTableNo = intentResult.getContents().substring(7,14);
-
-        Log.wtf("qrCodeResId", qrCodeResId);
-        Log.wtf("qrCodeResId", qrCodeTableNo);
-
         if (intentResult != null){
             if (intentResult.getContents() == null){
                 Toast.makeText(this, "You cancelled scanning", Toast.LENGTH_SHORT).show();
             } else {
+                qrCodeResId = intentResult.getContents().substring(0,7);
+                qrCodeTableNo = intentResult.getContents().substring(7,14);
+
+                Log.wtf("qrCodeResId", qrCodeResId);
+                Log.wtf("qrCodeResId", qrCodeTableNo);
+
                 Toast.makeText(this, qrCodeResId + " with " + qrCodeTableNo, Toast.LENGTH_SHORT).show();
                 Log.d("strqrcode",intentResult.getContents());
                 startActivity(new Intent(this, CustMainActivity.class));
