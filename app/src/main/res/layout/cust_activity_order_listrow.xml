@@ -8,36 +8,40 @@
     <TextView
         android:layout_width="150dp"
         android:layout_height="30dp"
-        android:id="@+id/a"
+        android:id="@+id/orderMenuItemList"
         android:hint="OrderName"
         android:textSize="12dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:id="@+id/b"
+        android:id="@+id/orderMenuPriceList"
         android:hint="Price"
         android:textSize="12dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"/>
 
-    <!--<Button-->
-        <!--android:id="@+id/d"-->
-        <!--android:layout_width="35dp"-->
-        <!--android:layout_height="40dp" />-->
+    <Button
+        android:id="@+id/addQuantityPerItem"
+        android:layout_width="35dp"
+        android:layout_height="40dp" />
 
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:id="@+id/c"-->
-        <!--android:hint="100"-->
-        <!--android:textSize="12dp"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:layout_marginRight="5dp"/>-->
+    <!--android:background="@drawable/ic_action_increase"-->
 
-    <!--<Button-->
-        <!--android:id="@+id/e"-->
-        <!--android:layout_width="35dp"-->
-        <!--android:layout_height="40dp" />-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:id="@+id/orderMenuQuantityList"
+        android:hint="100"
+        android:textSize="12dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"/>
+
+    <Button
+        android:id="@+id/rmvQuantityPerItem"
+        android:layout_width="35dp"
+        android:layout_height="40dp" />
+
+    <!--android:background="@drawable/ic_action_decrease"-->
 
 </LinearLayout>

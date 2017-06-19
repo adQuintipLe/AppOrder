@@ -8,14 +8,16 @@ public class OrderList {
 
     private String menuName;
     private String menuPrice;
+    private String menuQuantity;
 
     public OrderList(){
 
     }
 
-    public OrderList(String menuName, String menuPrice) {
+    public OrderList(String menuName, String menuPrice, String menuQuantity) {
         this.menuName = menuName;
         this.menuPrice = menuPrice;
+        this.menuQuantity = menuQuantity;
     }
 
     public String getMenuName() {
@@ -32,5 +34,13 @@ public class OrderList {
 
     public void setMenuPrice(String menuPrice) {
         this.menuPrice = menuPrice;
+    }
+
+    public String getMenuQuantity() {
+        return menuQuantity;
+    }
+
+    public void setMenuQuantity(String menuQuantity) {
+        this.menuQuantity = menuQuantity;
     }
 }

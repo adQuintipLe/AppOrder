@@ -33,6 +33,8 @@ public class CustHomeTabMenuAdd extends Fragment {
     private Button addCustOrder,customizeCustOrder;
 
     public static String strCustomizeCustOrder = "";
+//    public static String strQuantityItem = "";
+    public static int intQuantityItem = 1;
 
     @Nullable
     @Override
@@ -101,6 +103,8 @@ public class CustHomeTabMenuAdd extends Fragment {
             @Override
             public void onClick(View view) {
 
+//                strQuantityItem = "1";
+
                 DatabaseReference dbOrder = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder")
                         .child(CustChooseRestaurant.qrCodeTableNo);
                 dbOrder.child("tblNo").setValue(CustChooseRestaurant.qrCodeTableNo);
@@ -111,9 +115,10 @@ public class CustHomeTabMenuAdd extends Fragment {
                         .child(CustChooseRestaurant.qrCodeTableNo).child("OrderMenu").child(CustHomeTabMenu.strCustMenuItem);
                 dbOrderMenu.child("menuName").setValue(CustHomeTabMenu.strCustMenuItem);
                 dbOrderMenu.child("menuPrice").setValue(CustHomeTabMenu.strCustMenuPrice);
+                dbOrderMenu.child("menuQuantity").setValue(Integer.toString(intQuantityItem));
 
                 Log.d("test2", CustHomeTabMenu.strCustMenuItem);
-                Log.d("test3", CustHomeTabMenu.strCustMenuPrice);
+                Log.d("test3", String.valueOf(CustHomeTabMenu.strCustMenuPrice));
 
                 Toast.makeText(getActivity(), "item added", Toast.LENGTH_SHORT).show();
 
