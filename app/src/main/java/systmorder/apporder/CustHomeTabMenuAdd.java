@@ -29,12 +29,12 @@ public class CustHomeTabMenuAdd extends Fragment {
 
     private DatabaseReference databaseReference;
     private ImageView imgCustView;
-    private TextView tvCustMenuItem, tvCustMenuPrice;
-    private Button addCustOrder,customizeCustOrder;
+    private TextView tvCustMenuItem, tvCustMenuPrice, tvQuantityMenuItem;
+    private Button addCustOrder,customizeCustOrder, increaseQuantity, decreaseQuantity;
 
     public static String strCustomizeCustOrder = "";
-//    public static String strQuantityItem = "";
-    public static int intQuantityItem = 1;
+    public static int intQuantityItem = 0;
+    public static String strIntQuantity;
 
     @Nullable
     @Override
@@ -61,6 +61,37 @@ public class CustHomeTabMenuAdd extends Fragment {
 
         tvCustMenuPrice = (TextView) v.findViewById(R.id.tvCustMenuPrice);
         tvCustMenuPrice.setText(CustHomeTabMenu.strCustMenuPrice);
+
+        tvQuantityMenuItem = (TextView) v.findViewById(R.id.tvQuantityMenuItem);
+        tvQuantityMenuItem.setText(CustOrderListActivity.strListMenuAmount);
+
+        increaseQuantity = (Button) v.findViewById(R.id.increaseQuantity);
+        increaseQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (view == increaseQuantity){
+                    intQuantityItem++;
+                    strIntQuantity = Integer.toString(intQuantityItem);
+                    tvQuantityMenuItem.setText(strIntQuantity);
+                }
+
+            }
+        });
+
+        decreaseQuantity = (Button) v.findViewById(R.id.decreaseQuantity);
+        decreaseQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (view == decreaseQuantity){
+                    intQuantityItem--;
+                    strIntQuantity = Integer.toString(intQuantityItem);
+                    tvQuantityMenuItem.setText(strIntQuantity);
+                }
+            }
+        });
+
 
         customizeCustOrder = (Button) v.findViewById(R.id.customizeCustOrder);
         customizeCustOrder.setOnClickListener(new View.OnClickListener() {
@@ -103,8 +134,6 @@ public class CustHomeTabMenuAdd extends Fragment {
             @Override
             public void onClick(View view) {
 
-//                strQuantityItem = "1";
-
                 DatabaseReference dbOrder = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder")
                         .child(CustChooseRestaurant.qrCodeTableNo);
                 dbOrder.child("tblNo").setValue(CustChooseRestaurant.qrCodeTableNo);
@@ -115,7 +144,7 @@ public class CustHomeTabMenuAdd extends Fragment {
                         .child(CustChooseRestaurant.qrCodeTableNo).child("OrderMenu").child(CustHomeTabMenu.strCustMenuItem);
                 dbOrderMenu.child("menuName").setValue(CustHomeTabMenu.strCustMenuItem);
                 dbOrderMenu.child("menuPrice").setValue(CustHomeTabMenu.strCustMenuPrice);
-                dbOrderMenu.child("menuQuantity").setValue(Integer.toString(intQuantityItem));
+                dbOrderMenu.child("menuQuantity").setValue(strIntQuantity);
 
                 Log.d("test2", CustHomeTabMenu.strCustMenuItem);
                 Log.d("test3", String.valueOf(CustHomeTabMenu.strCustMenuPrice));

@@ -21,13 +21,6 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"/>
 
-    <Button
-        android:id="@+id/addQuantityPerItem"
-        android:layout_width="35dp"
-        android:layout_height="40dp" />
-
-    <!--android:background="@drawable/ic_action_increase"-->
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="30dp"
@@ -36,12 +29,5 @@
         android:textSize="12dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"/>
-
-    <Button
-        android:id="@+id/rmvQuantityPerItem"
-        android:layout_width="35dp"
-        android:layout_height="40dp" />
-
-    <!--android:background="@drawable/ic_action_decrease"-->
 
 </LinearLayout>

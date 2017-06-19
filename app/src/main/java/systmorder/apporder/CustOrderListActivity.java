@@ -29,7 +29,6 @@ public class CustOrderListActivity extends AppCompatActivity {
     public static String strListMenuName = "";
     public static String strListMenuPrice = "";
     public static String strListMenuAmount = "";
-    public static String strIntQuantity;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -102,45 +101,7 @@ public class CustOrderListActivity extends AppCompatActivity {
            TextView orderMenuQuantityList = (TextView) fView.findViewById(R.id.orderMenuQuantityList);
             orderMenuQuantityList.setText(menuQuantity);
 
-            final Button addQuantityPerItem = (Button) fView.findViewById(R.id.addQuantityPerItem);
-            addQuantityPerItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
 
-                    if (view == addQuantityPerItem){
-
-                        CustHomeTabMenuAdd.intQuantityItem++;
-                        strIntQuantity = Integer.toString(CustHomeTabMenuAdd.intQuantityItem);
-
-                        DatabaseReference dbOrderMenu = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder")
-                                .child(CustChooseRestaurant.qrCodeTableNo).child("OrderMenu").child(CustHomeTabMenu.strCustMenuItem);
-
-                        dbOrderMenu.child("menuQuantity").setValue(String.valueOf(strIntQuantity));
-
-                    }
-
-                }
-            });
-
-            final Button rmvQuantityPerItem = (Button) fView.findViewById(R.id.rmvQuantityPerItem);
-            rmvQuantityPerItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    if (view == rmvQuantityPerItem){
-
-                        CustHomeTabMenuAdd.intQuantityItem--;
-                        strIntQuantity = Integer.toString(CustHomeTabMenuAdd.intQuantityItem);
-
-                        DatabaseReference dbOrderMenu = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder")
-                                .child(CustChooseRestaurant.qrCodeTableNo).child("OrderMenu").child(CustHomeTabMenu.strCustMenuItem);
-
-                        dbOrderMenu.child("menuQuantity").setValue(String.valueOf(strIntQuantity));
-
-                    }
-
-                }
-            });
         }
     }
 }

@@ -32,6 +32,36 @@
         android:textColor="@color/successColorDark"
         android:layout_marginTop="5dp"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/increaseQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Up" />
+
+        <Button
+            android:id="@+id/decreaseQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="Down" />
+
+        <TextView
+            android:id="@+id/tvQuantityMenuItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:hint="0"
+            android:textSize="20dp"/>
+
+    </RelativeLayout>
+
     <Button
         android:id="@+id/customizeCustOrder"
         android:layout_width="match_parent"
