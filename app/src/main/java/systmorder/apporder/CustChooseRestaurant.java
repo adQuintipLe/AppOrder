@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,18 +31,22 @@ import org.json.JSONObject;
 public class CustChooseRestaurant extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
+    private FirebaseAuth firebaseAuth;
     private Button clickToCustomer;
 
     public static IntentResult intentResult = null;
     public static String qrCodeResId = "";
     public static String qrCodeTableNo = "";
-
+    public static String orderId = "";
+    public static String userId = "";
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cust_activity_chooose_restaurant);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("tblRstrn");
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         clickToCustomer = (Button) findViewById(R.id.clickToCustomer);
 
@@ -83,6 +88,10 @@ public class CustChooseRestaurant extends AppCompatActivity {
 
                 Toast.makeText(this, qrCodeResId + " with " + qrCodeTableNo, Toast.LENGTH_SHORT).show();
                 Log.d("strqrcode",intentResult.getContents());
+
+                orderId = databaseReference.push().getKey();
+                userId = firebaseAuth.getCurrentUser().getUid().toString();
+
                 startActivity(new Intent(this, CustMainActivity.class));
                 finish();
             }

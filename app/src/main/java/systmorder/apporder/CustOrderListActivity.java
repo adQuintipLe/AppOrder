@@ -53,8 +53,8 @@ public class CustOrderListActivity extends AppCompatActivity {
                 OrderList.class,
                 R.layout.cust_activity_order_listrow,
                 OrderViewHolder.class,
-                databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child(CustHomeTabMenuAdd.orderId)
-                        .child(CustChooseRestaurant.qrCodeTableNo).child("OrderMenu")
+                databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child(CustChooseRestaurant.orderId)
+                        .child("OrderMenu")
         ) {
             @Override
             protected void populateViewHolder(OrderViewHolder viewHolder, final OrderList model, int position) {

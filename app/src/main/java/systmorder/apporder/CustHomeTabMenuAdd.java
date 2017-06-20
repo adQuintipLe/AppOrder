@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -35,7 +36,6 @@ public class CustHomeTabMenuAdd extends Fragment {
     public static String strCustomizeCustOrder = "";
     public static int intQuantityItem = 0;
     public static String strIntQuantity;
-    public static String orderId = "";
 
     @Nullable
     @Override
@@ -135,16 +135,15 @@ public class CustHomeTabMenuAdd extends Fragment {
             @Override
             public void onClick(View view) {
 
-                orderId = databaseReference.push().getKey();
+                DatabaseReference dbOrderId = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child(CustChooseRestaurant.orderId);
 
-                DatabaseReference dbOrder = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child(orderId)
-                        .child(CustChooseRestaurant.qrCodeTableNo);
-                dbOrder.child("tblNo").setValue(CustChooseRestaurant.qrCodeTableNo);
+                dbOrderId.child("tblNo").setValue(CustChooseRestaurant.qrCodeTableNo);
+                dbOrderId.child("orderID").setValue(CustChooseRestaurant.orderId);
+                dbOrderId.child("userID").setValue(CustChooseRestaurant.userId);
+                dbOrderId.child("orderStatus").setValue("New Order");
 
-                Log.d("test1", CustChooseRestaurant.qrCodeTableNo);
-
-                DatabaseReference dbOrderMenu = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child(orderId)
-                        .child(CustChooseRestaurant.qrCodeTableNo).child("OrderMenu").child(CustHomeTabMenu.strCustMenuItem);
+                DatabaseReference dbOrderMenu = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child(CustChooseRestaurant.orderId)
+                        .child("OrderMenu").child(CustHomeTabMenu.strCustMenuItem);
                 dbOrderMenu.child("menuName").setValue(CustHomeTabMenu.strCustMenuItem);
                 dbOrderMenu.child("menuPrice").setValue(CustHomeTabMenu.strCustMenuPrice);
                 dbOrderMenu.child("menuQuantity").setValue(strIntQuantity);
