@@ -35,6 +35,7 @@ public class CustHomeTabMenuAdd extends Fragment {
     public static String strCustomizeCustOrder = "";
     public static int intQuantityItem = 0;
     public static String strIntQuantity;
+    public static String orderId = "";
 
     @Nullable
     @Override
@@ -134,13 +135,15 @@ public class CustHomeTabMenuAdd extends Fragment {
             @Override
             public void onClick(View view) {
 
-                DatabaseReference dbOrder = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder")
+                orderId = databaseReference.push().getKey();
+
+                DatabaseReference dbOrder = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child(orderId)
                         .child(CustChooseRestaurant.qrCodeTableNo);
                 dbOrder.child("tblNo").setValue(CustChooseRestaurant.qrCodeTableNo);
 
                 Log.d("test1", CustChooseRestaurant.qrCodeTableNo);
 
-                DatabaseReference dbOrderMenu = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder")
+                DatabaseReference dbOrderMenu = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child(orderId)
                         .child(CustChooseRestaurant.qrCodeTableNo).child("OrderMenu").child(CustHomeTabMenu.strCustMenuItem);
                 dbOrderMenu.child("menuName").setValue(CustHomeTabMenu.strCustMenuItem);
                 dbOrderMenu.child("menuPrice").setValue(CustHomeTabMenu.strCustMenuPrice);

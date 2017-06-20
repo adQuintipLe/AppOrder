@@ -7,13 +7,17 @@ package systmorder.apporder;
 public class TableList {
 
     private String tableNo;
+    private String tblNo;
+    private String orderID;
 
     public  TableList(){
 
     }
 
-    public TableList(String tableNo) {
+    public TableList(String tableNo, String tblNo, String orderID) {
         this.tableNo = tableNo;
+        this.tblNo = tblNo;
+        this.orderID = orderID;
     }
 
     public String getTableNo() {
@@ -22,5 +26,21 @@ public class TableList {
 
     public void setTableNo(String tableNo) {
         this.tableNo = tableNo;
+    }
+
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
+    }
+
+    public String getTblNo() {
+        return tblNo;
+    }
+
+    public void setTblNo(String tblNo) {
+        this.tblNo = tblNo;
     }
 }

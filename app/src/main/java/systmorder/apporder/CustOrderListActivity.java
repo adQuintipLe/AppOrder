@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -52,7 +53,7 @@ public class CustOrderListActivity extends AppCompatActivity {
                 OrderList.class,
                 R.layout.cust_activity_order_listrow,
                 OrderViewHolder.class,
-                databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder")
+                databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child(CustHomeTabMenuAdd.orderId)
                         .child(CustChooseRestaurant.qrCodeTableNo).child("OrderMenu")
         ) {
             @Override
@@ -69,6 +70,13 @@ public class CustOrderListActivity extends AppCompatActivity {
                         strListMenuName = model.getMenuName();
                         strListMenuPrice = model.getMenuPrice();
                         strListMenuAmount = model.getMenuQuantity();
+
+                        startActivity(new Intent(CustOrderListActivity.this, CustHomeTabMenuAdd.class));
+//                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//                        CustHomeTabMenuEdit fragCustHomeTabMenuEdit = new CustHomeTabMenuEdit();
+//                        transaction.replace(R.id.cust_activity_main, fragCustHomeTabMenuEdit);
+//                        transaction.addToBackStack(null);
+//                        transaction.commit();
 
                     }
                 });
