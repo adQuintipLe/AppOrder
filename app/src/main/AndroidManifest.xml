@@ -29,11 +29,15 @@
         </activity>
         <activity android:name=".AllForgotPasswordActivity" />
         <activity android:name=".AllRegisterActivity" />
+
         <activity android:name=".AdminMainActivity" />
         <activity android:name=".OwnerChooseActivity" />
         <activity android:name=".OwnerMainActivity" />
+
         <activity android:name=".StaffChooseActivity" />
         <activity android:name=".StaffMainActivity" />
+        <activity android:name=".StaffMainActivityKitchenView"/>
+
         <activity android:name=".CustMainActivity" />
         <activity android:name=".CustChooseRestaurant"/>
         <activity android:name=".AnyOrientationCaptureActivity"

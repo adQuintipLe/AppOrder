@@ -41,7 +41,7 @@ public class StaffChooseActivity extends AppCompatActivity {
         btnToCust.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StaffChooseActivity.this, CustMainActivity.class));
+                startActivity(new Intent(StaffChooseActivity.this, CustChooseRestaurant.class));
                 finish();
             }
         });

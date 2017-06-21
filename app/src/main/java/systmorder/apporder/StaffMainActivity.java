@@ -1,8 +1,10 @@
 package systmorder.apporder;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,6 +27,7 @@ public class StaffMainActivity extends AppCompatActivity {
     private RecyclerView rvStaffKitchen;
 
     public static String strViewTblNo = "";
+    public static String strOrderId = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +64,10 @@ public class StaffMainActivity extends AppCompatActivity {
                     public void onClick(View view) {
 
                         strViewTblNo = model.getTblNo();
+                        strOrderId = model.getOrderID();
+
+                        Intent intent = new Intent(StaffMainActivity.this,StaffMainActivityKitchenView.class);
+                        startActivity(intent);
                     }
                 });
             }

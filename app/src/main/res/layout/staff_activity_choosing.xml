@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:layout_marginLeft="100dp"
-                android:text="Log As Cooker"/>
+                android:text="Log As Cashier"/>
 
         </RelativeLayout>
 

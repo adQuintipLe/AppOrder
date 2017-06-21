@@ -26,6 +26,7 @@ public class CustOrderListActivity extends AppCompatActivity {
 
     private static DatabaseReference databaseReference;
     private RecyclerView rvAddtoCart;
+    private Button button2;
 
     public static String strListMenuName = "";
     public static String strListMenuPrice = "";
@@ -41,6 +42,24 @@ public class CustOrderListActivity extends AppCompatActivity {
         rvAddtoCart = (RecyclerView) findViewById(R.id.rvAddtoCart);
         rvAddtoCart.setHasFixedSize(true);
         rvAddtoCart.setLayoutManager(new LinearLayoutManager(this));
+
+        button2 = (Button) findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//                DatabaseReference dbKitchen = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblKitchen").child(CustChooseRestaurant.qrCodeTableNo);
+//                dbKitchen.child("tblNo").setValue(CustChooseRestaurant.qrCodeTableNo);
+//
+//                DatabaseReference dbViewKitchen = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblKitchen")
+//                        .child(CustChooseRestaurant.qrCodeTableNo).child("viewOrderMenu");
+//
+//                dbViewKitchen.child("menuName").setValue(CustHomeTabMenu.strCustMenuItem);
+//                dbViewKitchen.child("menuPrice").setValue(CustHomeTabMenu.strCustMenuPrice);
+//                dbViewKitchen.child("menuQuantity").setValue(CustHomeTabMenuAdd.strIntQuantity);
+
+            }
+        });
 
     }
 
