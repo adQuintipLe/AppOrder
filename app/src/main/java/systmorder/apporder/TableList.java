@@ -9,15 +9,17 @@ public class TableList {
     private String tableNo;
     private String tblNo;
     private String orderID;
+    private String viewOrderId;
 
     public  TableList(){
 
     }
 
-    public TableList(String tableNo, String tblNo, String orderID) {
+    public TableList(String tableNo, String tblNo, String orderID, String viewOrderId) {
         this.tableNo = tableNo;
         this.tblNo = tblNo;
         this.orderID = orderID;
+        this.viewOrderId = viewOrderId;
     }
 
     public String getTableNo() {
@@ -42,5 +44,13 @@ public class TableList {
 
     public void setTblNo(String tblNo) {
         this.tblNo = tblNo;
+    }
+
+    public String getViewOrderId() {
+        return viewOrderId;
+    }
+
+    public void setViewOrderId(String viewOrderId) {
+        this.viewOrderId = viewOrderId;
     }
 }

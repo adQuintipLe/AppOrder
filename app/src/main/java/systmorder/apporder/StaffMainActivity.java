@@ -27,7 +27,7 @@ public class StaffMainActivity extends AppCompatActivity {
     private RecyclerView rvStaffKitchen;
 
     public static String strViewTblNo = "";
-    public static String strOrderId = "";
+    public static String strViewOrderId = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class StaffMainActivity extends AppCompatActivity {
                 TableList.class,
                 R.layout.staff_activity_kitchenrow,
                 TableKitchenViewHolder.class,
-                databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblOrder")
+                databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblOrder").child("OrderList")
         ) {
             @Override
             protected void populateViewHolder(TableKitchenViewHolder viewHolder, final TableList model, int position) {
@@ -64,7 +64,7 @@ public class StaffMainActivity extends AppCompatActivity {
                     public void onClick(View view) {
 
                         strViewTblNo = model.getTblNo();
-                        strOrderId = model.getOrderID();
+                        strViewOrderId = model.getViewOrderId();
 
                         Intent intent = new Intent(StaffMainActivity.this,StaffMainActivityKitchenView.class);
                         startActivity(intent);

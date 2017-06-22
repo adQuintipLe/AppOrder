@@ -54,8 +54,8 @@ public class StaffMainActivityKitchenView extends AppCompatActivity {
                 OrderList.class,
                 R.layout.staff_activity_content_kitchen_viewrow,
                 TableOrderKitchenViewHolder.class,
-                databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblOrder").child(StaffMainActivity.strOrderId)
-                        .child("OrderMenu")
+                databaseReference.child(AllLoginActivity.strAllRestrntID).child("tblOrder").child("OrderList").child(StaffMainActivity.strViewOrderId)
+                        .child("viewOrderMenu")
         ) {
             @Override
             protected void populateViewHolder(TableOrderKitchenViewHolder viewHolder, final OrderList model, int position) {
