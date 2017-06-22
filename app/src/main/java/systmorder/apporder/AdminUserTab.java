@@ -115,7 +115,7 @@ public class AdminUserTab extends Fragment {
 
         public void setUserName(String userName){
 
-            TextView txtUserName = (TextView) fView.findViewById(R.id.txtStaffUserName);
+            TextView txtUserName = (TextView) fView.findViewById(R.id.txtAllUserName);
             txtUserName.setText(userName);
         }
     }
