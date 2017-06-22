@@ -13,7 +13,7 @@ import android.widget.Button;
 public class OwnerChooseActivity extends AppCompatActivity {
 
     private Button btnOwnerGoToStaff;
-    private CardView clickToOwner;
+    private CardView clickToOwner, clickOwnerToCustomer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class OwnerChooseActivity extends AppCompatActivity {
 
 //        btnOwnerGoToOwner = (Button) findViewById(R.id.btnOwnerGoToOwner);
         clickToOwner = (CardView) findViewById(R.id.clickToOwner);
-        btnOwnerGoToStaff = (Button) findViewById(R.id.btnOwnerGoToStaff);
+        clickOwnerToCustomer = (CardView) findViewById(R.id.clickOwnerToCustomer);
 //        btnOwnerGoToCust = (Button) findViewById(R.id.btnOwnerGoToCust);
 
         clickToOwner.setOnClickListener(new View.OnClickListener() {
@@ -33,7 +33,7 @@ public class OwnerChooseActivity extends AppCompatActivity {
             }
         });
 
-        btnOwnerGoToStaff.setOnClickListener(new View.OnClickListener() {
+        clickOwnerToCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(OwnerChooseActivity.this, CustMainActivity.class));

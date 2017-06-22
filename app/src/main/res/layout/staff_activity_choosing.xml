@@ -43,6 +43,7 @@
 
     </android.support.v7.widget.CardView>
 
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,12 +71,33 @@
 
     </android.support.v7.widget.CardView>
 
-    <Button
-        android:id="@+id/btnToCust"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="SCAN QRCODE"/>
+        android:id="@+id/clickToCustomer">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_action_image"/>
+
+            <TextView
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="100dp"
+                android:text="Log As Customer"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
 
 
 </LinearLayout>

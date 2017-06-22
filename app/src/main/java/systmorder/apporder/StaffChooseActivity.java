@@ -11,8 +11,7 @@ import android.widget.Button;
 
 public class StaffChooseActivity extends AppCompatActivity {
 
-    private Button btnToCust;
-    private CardView clickToCashier, clickToKitchen;
+    private CardView clickToCashier, clickToKitchen, clickToCustomer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,8 +36,8 @@ public class StaffChooseActivity extends AppCompatActivity {
             }
         });
 
-        btnToCust = (Button) findViewById(R.id.btnToCust);
-        btnToCust.setOnClickListener(new View.OnClickListener() {
+        clickToCustomer = (CardView) findViewById(R.id.clickToCustomer);
+        clickToCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(StaffChooseActivity.this, CustChooseRestaurant.class));
