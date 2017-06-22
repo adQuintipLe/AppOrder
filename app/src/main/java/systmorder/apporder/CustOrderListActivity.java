@@ -15,8 +15,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by mansoull on 15/6/2017.
@@ -31,6 +38,9 @@ public class CustOrderListActivity extends AppCompatActivity {
     public static String strListMenuName = "";
     public static String strListMenuPrice = "";
     public static String strListMenuAmount = "";
+    public static String menuNam = "";
+    public static String menuPri = "";
+    public static String menuQty = "";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,15 +58,53 @@ public class CustOrderListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//                DatabaseReference dbKitchen = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblKitchen").child(CustChooseRestaurant.qrCodeTableNo);
-//                dbKitchen.child("tblNo").setValue(CustChooseRestaurant.qrCodeTableNo);
+
+                DatabaseReference dbView = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child("OrderList").child(CustChooseRestaurant.vieworderId);
+                dbView.child("viewOrderId").setValue(CustChooseRestaurant.vieworderId);
+                dbView.child("tblNo").setValue(CustChooseRestaurant.qrCodeTableNo);
+                dbView.child("userID").setValue(CustChooseRestaurant.userId);
+                dbView.child("orderStatus").setValue("New Order");
+
+                final DatabaseReference dbViewKitchen = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child("OrderList")
+                        .child(CustChooseRestaurant.vieworderId).child("viewOrderMenu");
+
+//                databaseReference.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
 //
-//                DatabaseReference dbViewKitchen = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblKitchen")
-//                        .child(CustChooseRestaurant.qrCodeTableNo).child("viewOrderMenu");
+//                        menuNam = dataSnapshot.getValue().toString();
+//                        Log.v("yolo", menuNam);
+//                    }
 //
-//                dbViewKitchen.child("menuName").setValue(CustHomeTabMenu.strCustMenuItem);
-//                dbViewKitchen.child("menuPrice").setValue(CustHomeTabMenu.strCustMenuPrice);
-//                dbViewKitchen.child("menuQuantity").setValue(CustHomeTabMenuAdd.strIntQuantity);
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//
+//                    }
+//                });
+                databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child("listTable").child(CustChooseRestaurant.orderId)
+                        .child("OrderMenu").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot menuData : dataSnapshot.getChildren()){
+
+                            menuNam = menuData.child("menuName").getValue(String.class);
+                            menuPri = menuData.child("menuPrice").getValue(String.class);
+                            menuQty = menuData.child("menuQuantity").getValue(String.class);
+
+                            DatabaseReference lol2 = dbViewKitchen.child(menuNam);
+
+                            lol2.child("menuName").setValue(menuNam);
+                            lol2.child("menuPrice").setValue(menuPri);
+                            lol2.child("menuQuantity").setValue(menuQty);
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
             }
         });
@@ -72,8 +120,8 @@ public class CustOrderListActivity extends AppCompatActivity {
                 OrderList.class,
                 R.layout.cust_activity_order_listrow,
                 OrderViewHolder.class,
-                databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child(CustChooseRestaurant.orderId)
-                        .child("OrderMenu")
+                databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child("listTable")
+                        .child(CustChooseRestaurant.orderId).child("OrderMenu")
         ) {
             @Override
             protected void populateViewHolder(OrderViewHolder viewHolder, final OrderList model, int position) {
@@ -90,7 +138,7 @@ public class CustOrderListActivity extends AppCompatActivity {
                         strListMenuPrice = model.getMenuPrice();
                         strListMenuAmount = model.getMenuQuantity();
 
-                        startActivity(new Intent(CustOrderListActivity.this, CustHomeTabMenuAdd.class));
+//                        startActivity(new Intent(CustOrderListActivity.this, CustHomeTabMenuAdd.class));
 //                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 //                        CustHomeTabMenuEdit fragCustHomeTabMenuEdit = new CustHomeTabMenuEdit();
 //                        transaction.replace(R.id.cust_activity_main, fragCustHomeTabMenuEdit);

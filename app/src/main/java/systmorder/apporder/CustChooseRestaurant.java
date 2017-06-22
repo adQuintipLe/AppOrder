@@ -38,6 +38,7 @@ public class CustChooseRestaurant extends AppCompatActivity {
     public static String qrCodeResId = "";
     public static String qrCodeTableNo = "";
     public static String orderId = "";
+    public static String vieworderId = "";
     public static String userId = "";
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,6 +91,7 @@ public class CustChooseRestaurant extends AppCompatActivity {
                 Log.d("strqrcode",intentResult.getContents());
 
                 orderId = databaseReference.push().getKey();
+                vieworderId = databaseReference.push().getKey();
                 userId = firebaseAuth.getCurrentUser().getUid().toString();
 
                 startActivity(new Intent(this, CustMainActivity.class));
