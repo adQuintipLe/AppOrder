@@ -12,7 +12,6 @@ import android.widget.Button;
 
 public class OwnerChooseActivity extends AppCompatActivity {
 
-    private Button btnOwnerGoToStaff;
     private CardView clickToOwner, clickOwnerToCustomer;
 
     @Override
@@ -36,7 +35,7 @@ public class OwnerChooseActivity extends AppCompatActivity {
         clickOwnerToCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(OwnerChooseActivity.this, CustMainActivity.class));
+                startActivity(new Intent(OwnerChooseActivity.this, CustChooseRestaurant.class));
                 finish();
             }
         });
