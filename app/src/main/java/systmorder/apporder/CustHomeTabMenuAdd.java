@@ -36,6 +36,7 @@ public class CustHomeTabMenuAdd extends Fragment {
     public static String strCustomizeCustOrder = "";
     int intQuantityItem;
     public static String strIntQuantity;
+    public static Double dbTotalPriceEachMenu = 0.00;
 
     @Nullable
     @Override
@@ -75,6 +76,12 @@ public class CustHomeTabMenuAdd extends Fragment {
                     intQuantityItem += 1;
                     strIntQuantity = Integer.toString(intQuantityItem);
                     tvQuantityMenuItem.setText(strIntQuantity);
+
+                    Double dbMenuQuantityIncrease = Double.parseDouble(strIntQuantity);
+
+                    dbTotalPriceEachMenu = CustHomeTabMenu.dbMenuPrice * dbMenuQuantityIncrease;
+
+                    Log.v("cektotalPrice", String.format("%.2f",dbTotalPriceEachMenu).toString());
                 }
 
             }
@@ -89,6 +96,12 @@ public class CustHomeTabMenuAdd extends Fragment {
                     intQuantityItem -= 1;
                     strIntQuantity = Integer.toString(intQuantityItem);
                     tvQuantityMenuItem.setText(strIntQuantity);
+
+                    Double dbMenuQuantityDecrease = Double.parseDouble(strIntQuantity);
+
+                    dbTotalPriceEachMenu = CustHomeTabMenu.dbMenuPrice * dbMenuQuantityDecrease;
+
+                    Log.v("cektotalPrice1", String.format("%.2f",dbTotalPriceEachMenu).toString());
                 }
             }
         });
@@ -145,7 +158,7 @@ public class CustHomeTabMenuAdd extends Fragment {
                 DatabaseReference dbOrderMenu = databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child("listTable").child(CustChooseRestaurant.orderId)
                         .child("OrderMenu").child(CustHomeTabMenu.strCustMenuItem);
                 dbOrderMenu.child("menuName").setValue(CustHomeTabMenu.strCustMenuItem);
-                dbOrderMenu.child("menuPrice").setValue(CustHomeTabMenu.strCustMenuPrice);
+                dbOrderMenu.child("menuPrice").setValue("RM " + String.format("%.2f", dbTotalPriceEachMenu).toString());
                 dbOrderMenu.child("menuQuantity").setValue(strIntQuantity);
 
                 Log.d("test2", CustHomeTabMenu.strCustMenuItem);

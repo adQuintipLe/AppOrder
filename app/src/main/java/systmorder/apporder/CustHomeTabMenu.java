@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,8 @@ public class CustHomeTabMenu extends Fragment {
     public static String strCustMenuItem = "";
     public static String strCustMenuPrice = "";
     public static String strCustMenuImage = "";
+    public static String subMenuPrice = "";
+    public static Double dbMenuPrice = 0.00;
 
     @Nullable
     @Override
@@ -80,6 +83,11 @@ public class CustHomeTabMenu extends Fragment {
                         strCustMenuItem = model.getMenuItem();
                         strCustMenuPrice = model.getMenuPrice();
                         strCustMenuImage = model.getMenuImage();
+
+                        subMenuPrice = strCustMenuPrice.substring(2);
+                        dbMenuPrice = Double.parseDouble(subMenuPrice);
+
+                        Log.v("ceksubstring", String.format("%.2f", dbMenuPrice).toString());
 
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                         CustHomeTabMenuAdd fragCustHomeTabMenuAdd = new CustHomeTabMenuAdd();
