@@ -34,6 +34,7 @@ public class CustOrderListActivity extends AppCompatActivity {
     private static DatabaseReference databaseReference;
     private RecyclerView rvAddtoCart;
     private Button button2;
+    private Boolean btnProcess = false;
 
     public static String strListMenuName = "";
     public static String strListMenuPrice = "";
@@ -41,6 +42,9 @@ public class CustOrderListActivity extends AppCompatActivity {
     public static String menuNam = "";
     public static String menuPri = "";
     public static String menuQty = "";
+    public static String menuNames = "";
+    public static String menuPrices = "";
+    public static String menuQtys = "";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -124,26 +128,87 @@ public class CustOrderListActivity extends AppCompatActivity {
                         .child(CustChooseRestaurant.orderId).child("OrderMenu")
         ) {
             @Override
-            protected void populateViewHolder(OrderViewHolder viewHolder, final OrderList model, int position) {
+            protected void populateViewHolder(final OrderViewHolder viewHolder, final OrderList model, final int position) {
 
                 viewHolder.setMenuName(model.getMenuName());
                 viewHolder.setMenuPrice(model.getMenuPrice());
                 viewHolder.setMenuQuantity(model.getMenuQuantity());
 
-                viewHolder.fView.setOnClickListener(new View.OnClickListener() {
+                databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child("listTable").child(CustChooseRestaurant.orderId)
+                                .child("OrderMenu").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onClick(View view) {
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot menuDatas : dataSnapshot.getChildren()){
 
-                        strListMenuName = model.getMenuName();
-                        strListMenuPrice = model.getMenuPrice();
-                        strListMenuAmount = model.getMenuQuantity();
+                            menuNames = menuDatas.child("menuName").getValue(String.class);
+                            menuPrices = menuDatas.child("menuPrice").getValue(String.class);
+                            menuQtys = menuDatas.child("menuQuantity").getValue(String.class);
 
-//                        startActivity(new Intent(CustOrderListActivity.this, CustHomeTabMenuAdd.class));
-//                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                        CustHomeTabMenuEdit fragCustHomeTabMenuEdit = new CustHomeTabMenuEdit();
-//                        transaction.replace(R.id.cust_activity_main, fragCustHomeTabMenuEdit);
-//                        transaction.addToBackStack(null);
-//                        transaction.commit();
+                            Log.v("menuNames", menuNames);
+                            Log.v("menuPrices", menuPrices);
+                            Log.v("menuQtys", menuQtys);
+
+                            viewHolder.btnUp.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                    strListMenuName = model.getMenuName();
+                                    strListMenuPrice = model.getMenuPrice();
+                                    strListMenuAmount = model.getMenuQuantity();
+
+                                    final int[] intListOrderMenu = {Integer.parseInt(strListMenuAmount)};
+
+                                    if (view == viewHolder.btnUp){
+//                                        if (menuNames.equals(strListMenuName)){
+                                            if (menuQtys.equals(strListMenuAmount)){
+
+//                                            btnProcess = true;
+                                                intListOrderMenu[0] += 1;
+                                                menuQtys = Integer.toString(intListOrderMenu[0]);
+
+                                                databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child("listTable")
+                                                        .child(CustChooseRestaurant.orderId).child("OrderMenu").child(menuNames).child("menuQuantity")
+                                                        .setValue(menuQtys);
+
+                                            }
+//                                        }
+
+                                    }
+
+                                }
+                            });
+
+                            viewHolder.btnDown.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                    strListMenuName = model.getMenuName();
+                                    strListMenuPrice = model.getMenuPrice();
+                                    strListMenuAmount = model.getMenuQuantity();
+
+                                    final int[] intListOrderMenu = {Integer.parseInt(strListMenuAmount)};
+
+                                    if (view == viewHolder.btnDown){
+
+                                        if (menuQtys.equals(strListMenuAmount)){
+
+                                            intListOrderMenu[0] -= 1;
+                                            menuQtys = Integer.toString(intListOrderMenu[0]);
+
+                                            databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child("listTable")
+                                                    .child(CustChooseRestaurant.orderId).child("OrderMenu").child(menuNames).child("menuQuantity")
+                                                    .setValue(menuQtys);
+
+                                        }
+                                    }
+                                }
+                            });
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
                     }
                 });
@@ -155,10 +220,90 @@ public class CustOrderListActivity extends AppCompatActivity {
     public static class OrderViewHolder extends RecyclerView.ViewHolder{
 
         View fView;
+        Button btnUp,btnDown;
+        TextView orderMenuQuantityList;
+
+        int intListOrderMenu = Integer.parseInt(CustHomeTabMenuAdd.strIntQuantity);
+//        private static int intListOrderMenu = 0;
+        public static String strintListOrderMenu = "";
+        public static String menuNames = "";
+        public static String menuPrices = "";
+        public static String menuQtys = "";
+        private Boolean processBtn = false;
+
+        private static DatabaseReference dbreferences;
 
         public OrderViewHolder(View itemView) {
             super(itemView);
             fView = itemView;
+            btnUp = (Button) fView.findViewById(R.id.btnUp);
+            btnDown = (Button) fView.findViewById(R.id.btnDown);
+
+//            dbreferences = FirebaseDatabase.getInstance().getReference().child("tblRstrn");
+
+//             btnUp = (Button) fView.findViewById(R.id.btnUp);
+//            btnUp.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//
+//                    if (view.getId() == btnUp.getId()){
+//
+//                        dbreferences.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child("listTable").child(CustChooseRestaurant.orderId)
+//                                .child("OrderMenu").addListenerForSingleValueEvent(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(DataSnapshot dataSnapshot) {
+//                                for (DataSnapshot menuDatas : dataSnapshot.getChildren()){
+//
+//                                    menuNames = menuDatas.child("menuName").getValue(String.class);
+//                                    menuPrices = menuDatas.child("menuPrice").getValue(String.class);
+//                                    menuQtys = menuDatas.child("menuQuantity").getValue(String.class);
+//
+//                                    intListOrderMenu += 1;
+//                                    menuQtys = Integer.toString(intListOrderMenu);
+////                                        orderMenuQuantityList.setText(menuQtys);
+//
+//                                    dbreferences.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child("listTable")
+//                                            .child(CustChooseRestaurant.orderId).child("OrderMenu").child(menuNames).child("menuQuantity").setValue(menuQtys);
+//
+////                        dbreferences.child(menuNames).child("menuQuantity").child(menuQtys);
+//
+////                                    DatabaseReference dbRefer1 = dbRefer.child(menuNames);
+////
+////                                    dbRefer1.child("menuQuantity").setValue(menuQtys);
+//
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(DatabaseError databaseError) {
+//
+//                            }
+//                        });
+//
+//                    }
+//
+//                }
+//            });
+//
+//            final Button btnDown = (Button) fView.findViewById(R.id.btnDown);
+//            btnDown.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//
+//                    if (view.getId() == btnDown.getId()){
+//
+//                        intListOrderMenu -= 1;
+//                        CustHomeTabMenuAdd.strIntQuantity = Integer.toString(intListOrderMenu);
+////                        orderMenuQuantityList.setText(CustHomeTabMenuAdd.strIntQuantity);
+////                        CustOrderListActivity.menuQty = Integer.toString(intListOrderMenu);
+////                        orderMenuQuantityList.setText(CustOrderListActivity.menuQty);
+//
+//                        databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child("listTable")
+//                                .child(CustChooseRestaurant.orderId).child("OrderMenu").child(CustHomeTabMenu.strCustMenuItem).child("menuQuantity")
+//                                .setValue(CustHomeTabMenuAdd.strIntQuantity);
+//                    }
+//                }
+//            });
 
         }
 
@@ -173,9 +318,8 @@ public class CustOrderListActivity extends AppCompatActivity {
         }
 
         public void setMenuQuantity(String menuQuantity) {
-           TextView orderMenuQuantityList = (TextView) fView.findViewById(R.id.orderMenuQuantityList);
+           final TextView orderMenuQuantityList = (TextView) fView.findViewById(R.id.orderMenuQuantityList);
             orderMenuQuantityList.setText(menuQuantity);
-
 
         }
     }

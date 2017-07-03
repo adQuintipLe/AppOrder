@@ -6,7 +6,7 @@
     android:paddingRight="15dp">
 
     <TextView
-        android:layout_width="170dp"
+        android:layout_width="150dp"
         android:layout_height="30dp"
         android:id="@+id/orderMenuItemList"
         android:hint="OrderName"
@@ -21,13 +21,23 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"/>
 
+    <Button
+        android:id="@+id/btnUp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:id="@+id/orderMenuQuantityList"
-        android:hint="100"
+        android:hint="10"
         android:textSize="15dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"/>
+
+    <Button
+        android:id="@+id/btnDown"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

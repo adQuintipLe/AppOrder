@@ -34,7 +34,7 @@ public class CustHomeTabMenuAdd extends Fragment {
     private Button addCustOrder,customizeCustOrder, increaseQuantity, decreaseQuantity;
 
     public static String strCustomizeCustOrder = "";
-    public static int intQuantityItem = 0;
+    int intQuantityItem;
     public static String strIntQuantity;
 
     @Nullable
@@ -72,7 +72,7 @@ public class CustHomeTabMenuAdd extends Fragment {
             public void onClick(View view) {
 
                 if (view == increaseQuantity){
-                    intQuantityItem++;
+                    intQuantityItem += 1;
                     strIntQuantity = Integer.toString(intQuantityItem);
                     tvQuantityMenuItem.setText(strIntQuantity);
                 }
@@ -86,7 +86,7 @@ public class CustHomeTabMenuAdd extends Fragment {
             public void onClick(View view) {
 
                 if (view == decreaseQuantity){
-                    intQuantityItem--;
+                    intQuantityItem -= 1;
                     strIntQuantity = Integer.toString(intQuantityItem);
                     tvQuantityMenuItem.setText(strIntQuantity);
                 }

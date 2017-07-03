@@ -72,6 +72,7 @@ public class OwnerOrderTabView extends Fragment {
 
     public static class OrderOwnerViewHolder extends RecyclerView.ViewHolder{
 
+        public static int intListOrderMenu;
         View fView;
 
         public OrderOwnerViewHolder(View itemView) {
