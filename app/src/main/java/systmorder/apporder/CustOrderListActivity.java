@@ -222,20 +222,45 @@ public class CustOrderListActivity extends AppCompatActivity {
 
                                         int[] intListOrderMenu = {Integer.parseInt(orderDecrease.getMenuQuantity())};
 
-                                        Log.v("checkItemName", orderDecrease.getMenuName());
-                                        Log.v("checkItemQuantity", orderDecrease.getMenuQuantity());
-                                        Log.v("checkItemPrice", orderDecrease.getMenuPrice());
+                                        Log.v("DcheckItemName", orderDecrease.getMenuName());
+                                        Log.v("DcheckItemQuantity", orderDecrease.getMenuQuantity());
+                                        Log.v("DcheckItemPrice", orderDecrease.getMenuPrice());
 
+                                        Double dbOldQuantityMenuDecreased = Double.parseDouble(orderDecrease.getMenuQuantity().toString());
+                                        Double dbOldPriceMenuDecreased = Double.parseDouble(orderDecrease.getMenuPrice().toString().substring(2));
                                         String quantityMenu = orderDecrease.getMenuQuantity();
 
                                         intListOrderMenu[0] -= 1;
                                         quantityMenu = Integer.toString(intListOrderMenu[0]);
+                                        Log.v("DcheckItemQuantity1", quantityMenu);
 
-                                        Log.v("checkItemQuantity1", quantityMenu);
+                                        Double dbNewQuantityDecreased = Double.parseDouble(quantityMenu);
+
+                                        Double getOriPrice = dbOldPriceMenuDecreased / dbOldQuantityMenuDecreased;
+
+                                        Log.v("DcheckOriPrice", String.format("%.2f",getOriPrice).toString());
+
+                                        Double dbAnswerDecreased = dbOldPriceMenuDecreased - dbNewQuantityDecreased;
+
+                                        Log.v("DcheckNewQ", dbNewQuantityDecreased.toString());
+                                        Log.v("DcheckOldQ", dbOldPriceMenuDecreased.toString());
+
+                                        Double getQuantityDecreased = dbOldPriceMenuDecreased - dbAnswerDecreased;
+
+                                        Log.v("DcheckAns", dbAnswerDecreased.toString());
+                                        Log.v("DcheckGetQ", getQuantityDecreased.toString());
+
+                                        Double realPriceEachItem = getOriPrice * getQuantityDecreased;
+
+                                        Log.v("DcheckOldPrice", String.format("%.2f",dbOldPriceMenuDecreased).toString());
+                                        Log.v("DcheckFinalPrice", String.format("%.2f",realPriceEachItem).toString());
 //
-                                        databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child("listTable")
-                                                .child(CustChooseRestaurant.orderId).child("OrderMenu").child(orderDecrease.getMenuName()).child("menuQuantity")
-                                                .setValue(quantityMenu);
+                                        DatabaseReference dbRef = databaseReference.child(CustChooseRestaurant.qrCodeResId)
+                                                .child("tblOrder").child("listTable").child(CustChooseRestaurant.orderId)
+                                                .child("OrderMenu").child(orderDecrease.getMenuName());
+
+                                        dbRef.child("menuQuantity").setValue(quantityMenu);
+                                        dbRef.child("menuPrice").setValue("RM " + String.format("%.2f",realPriceEachItem).toString());
                                     }
 
                                 }
