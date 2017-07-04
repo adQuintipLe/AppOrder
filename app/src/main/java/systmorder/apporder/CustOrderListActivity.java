@@ -35,7 +35,7 @@ public class CustOrderListActivity extends AppCompatActivity {
     private static DatabaseReference databaseReference;
     private RecyclerView rvAddtoCart;
     private Button button2;
-    private Boolean btnProcess = false;
+    private TextView tvTotalPrice;
 
     public static String strListMenuName = "";
     public static String strListMenuPrice = "";
@@ -43,9 +43,7 @@ public class CustOrderListActivity extends AppCompatActivity {
     public static String menuNam = "";
     public static String menuPri = "";
     public static String menuQty = "";
-    public static String menuNames = "";
-    public static String menuPrices = "";
-    public static String menuQtys = "";
+    public static Double dbTotalPrice = 0.00;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -111,8 +109,13 @@ public class CustOrderListActivity extends AppCompatActivity {
                     }
                 });
 
+                Toast.makeText(CustOrderListActivity.this, "Successfully sent to the kitchen", Toast.LENGTH_SHORT).show();
+
             }
         });
+
+        tvTotalPrice = (TextView) findViewById(R.id.tvTotalPrice);
+        dbTotalPrice = 0.00;
 
     }
 
@@ -138,6 +141,13 @@ public class CustOrderListActivity extends AppCompatActivity {
                 strListMenuName = model.getMenuName();
                 strListMenuPrice = model.getMenuPrice();
                 strListMenuAmount = model.getMenuQuantity();
+
+//                Double dbPriceOfMenu = Double.parseDouble(strListMenuPrice.substring(2));
+//
+//                dbTotalPrice = dbTotalPrice + dbPriceOfMenu;
+//
+//                tvTotalPrice.setText("RM " + String.format("%.2f",dbTotalPrice).toString());
+//                Log.v("cekTotalPrice", dbTotalPrice.toString());
 
                 viewHolder.btnUp.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -301,6 +311,54 @@ public class CustOrderListActivity extends AppCompatActivity {
                         });
                     }
                 });
+
+                ////total condition
+
+                //
+
+                //
+
+                //
+                databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child("listTable").child(CustChooseRestaurant.orderId)
+                        .child("OrderMenu").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+//                            OrderList orderListTotal = snapshot.getValue(OrderList.class);
+
+                            OrderList orderListPrice = snapshot.getValue(OrderList.class);
+//                            String menuPris = snapshot.child("menuPrice").getValue(String.class);
+//                            String menuQtys = snapshot.child("menuQuantity").getValue(String.class);
+                            if (model.getMenuName().equals(orderListPrice.getMenuName())){
+
+
+//                            Log.v("tgkHarga", menuPris);
+
+                                Double dbOrderListTotal = Double.parseDouble(orderListPrice.getMenuPrice().substring(2));
+
+                                dbTotalPrice = dbTotalPrice + dbOrderListTotal;
+
+                                Log.v("tgkLatestHarga", String.format("%.2f",dbTotalPrice).toString());
+
+                                tvTotalPrice.setText("RM " + String.format("%.2f",dbTotalPrice).toString());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                //
+
+                //
+
+                //
+
+                ////
             }
         };
         rvAddtoCart.setAdapter(firebaseRecyclerAdapter);
