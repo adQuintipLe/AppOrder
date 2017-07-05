@@ -271,6 +271,7 @@ public class CustOrderListActivity extends AppCompatActivity {
 
                                         dbRef.child("menuQuantity").setValue(quantityMenu);
                                         dbRef.child("menuPrice").setValue("RM " + String.format("%.2f",realPriceEachItem).toString());
+
                                     }
 
                                 }
@@ -325,21 +326,18 @@ public class CustOrderListActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()){
 
-//                            OrderList orderListTotal = snapshot.getValue(OrderList.class);
-
                             OrderList orderListPrice = snapshot.getValue(OrderList.class);
-//                            String menuPris = snapshot.child("menuPrice").getValue(String.class);
-//                            String menuQtys = snapshot.child("menuQuantity").getValue(String.class);
+
                             if (model.getMenuName().equals(orderListPrice.getMenuName())){
-
-
-//                            Log.v("tgkHarga", menuPris);
 
                                 Double dbOrderListTotal = Double.parseDouble(orderListPrice.getMenuPrice().substring(2));
 
                                 dbTotalPrice = dbTotalPrice + dbOrderListTotal;
 
                                 Log.v("tgkLatestHarga", String.format("%.2f",dbTotalPrice).toString());
+
+                                databaseReference.child(CustChooseRestaurant.qrCodeResId).child("tblOrder").child("listTable").child(CustChooseRestaurant.orderId)
+                                        .child("TotalPrice").setValue(dbTotalPrice);
 
                                 tvTotalPrice.setText("RM " + String.format("%.2f",dbTotalPrice).toString());
                             }
