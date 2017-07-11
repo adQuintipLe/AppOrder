@@ -203,6 +203,7 @@ public class CustOrderListActivity extends AppCompatActivity {
 
                                         dbRefUpd.child("menuQuantity").setValue(quantityMenu);
                                         dbRefUpd.child("menuPrice").setValue("RM " + String.format("%.2f",realPriceEachItem).toString());
+
                                     }
                                 }
 
@@ -282,6 +283,7 @@ public class CustOrderListActivity extends AppCompatActivity {
 
                             }
                         });
+
                     }
                 });
 
@@ -340,6 +342,7 @@ public class CustOrderListActivity extends AppCompatActivity {
                                         .child("TotalPrice").setValue(dbTotalPrice);
 
                                 tvTotalPrice.setText("RM " + String.format("%.2f",dbTotalPrice).toString());
+
                             }
                         }
                     }
@@ -350,7 +353,7 @@ public class CustOrderListActivity extends AppCompatActivity {
                     }
                 });
 
-                //
+                //syste out print line test1
 
                 //
 
