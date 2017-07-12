@@ -204,6 +204,11 @@ public class CustOrderListActivity extends AppCompatActivity {
                                         dbRefUpd.child("menuQuantity").setValue(quantityMenu);
                                         dbRefUpd.child("menuPrice").setValue("RM " + String.format("%.2f",realPriceEachItem).toString());
 
+                                        finish();
+                                        overridePendingTransition(0, 0);
+                                        startActivity(getIntent());
+                                        overridePendingTransition(0, 0);
+
                                     }
                                 }
 

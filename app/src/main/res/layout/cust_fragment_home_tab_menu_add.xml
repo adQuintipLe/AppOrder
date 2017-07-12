@@ -1,83 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/llayoutTable">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imgCustView"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:adjustViewBounds="true"
-        android:src="@drawable/ic_action_insert_photo"/>
+        android:layout_height="match_parent"
+        android:id="@+id/llayoutTable">
 
-    <TextView
-        android:id="@+id/tvCustMenuItem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="Menu Item"
-        android:textSize="20dp"/>
-
-    <TextView
-        android:id="@+id/tvCustMenuPrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="Price"
-        android:textSize="15dp"
-        android:textColor="@color/successColorDark"
-        android:layout_marginTop="5dp"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/increaseQuantity"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/imgCustView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Up" />
-
-        <Button
-            android:id="@+id/decreaseQuantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:text="Down" />
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_action_insert_photo" />
 
         <TextView
-            android:id="@+id/tvQuantityMenuItem"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvCustMenuItem"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:hint="0"
+            android:gravity="center"
+            android:hint="Menu Item"
             android:textSize="20dp"/>
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/tvCustMenuPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="Price"
+            android:textSize="15dp"
+            android:textColor="@color/successColorDark"
+            android:layout_marginTop="5dp"/>
 
-    <Button
-        android:id="@+id/customizeCustOrder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Customize Order"
-        android:textColor="@color/white"
-        android:background="@color/successColor"
-        android:layout_marginTop="5dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/addCustOrder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ADD"
-        android:textColor="@color/white"
-        android:background="@color/successColor"
-        android:layout_marginTop="5dp"/>
+            <Button
+                android:id="@+id/increaseQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Up" />
 
-</LinearLayout>
+            <Button
+                android:id="@+id/decreaseQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:text="Down" />
+
+            <TextView
+                android:id="@+id/tvQuantityMenuItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:hint="0"
+                android:textSize="20dp"/>
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/customizeCustOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Customize Order"
+            android:textColor="@color/white"
+            android:background="@color/successColor"
+            android:layout_marginTop="5dp"/>
+
+        <Button
+            android:id="@+id/addCustOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:textColor="@color/white"
+            android:background="@color/successColor"
+            android:layout_marginTop="5dp"/>
+
+    </LinearLayout>
+
+</ScrollView>
